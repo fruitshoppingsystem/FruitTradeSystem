@@ -5,8 +5,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.sys.controller"/>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/html/"/>
-        <property name="suffix" value=".html"/>
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        <property name="prefix" value="/html/"/>-->
+<!--        <property name="suffix" value=".html"/>-->
+<!--    </bean>-->
+    <bean id="htmlviewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="prefix" value="/html/" />
+        <property name="suffix" value=".html" />
+        <property name="order" value="0"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
     </bean>
 </beans>
