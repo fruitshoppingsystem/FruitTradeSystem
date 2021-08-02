@@ -9,15 +9,10 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-        function register() {
-            alert(#{msg});
-        }
-    </script>
 </head>
 <body style="margin:50px">
 <div class="row" style="margin-top:200px;" id="userRegisterDiv">
-    <form action="/userRegister" method="post">
+    <form>
     <div class="col-md-6 col-md-offset-3" >
         <div class="well col-md-12">
             <h3 align="center">用户注册</h3>
@@ -43,7 +38,7 @@
             </div>
             <br />
             <div>
-                <input type="submit" class="btn bg-success btn-block" onblur="checkForm()" onclick="return submitT()" value="注册">
+                <input id="register" type="submit" class="btn bg-success btn-block" onblur="checkForm()" onclick="return submitT()" value="注册">
                 <input type="reset" class="btn bg-success btn-block" value="重置">
             </div>
 
@@ -122,8 +117,19 @@
             return true;
         }
     }
-
     function submitT() {
+        if (checkForm()){
+            var uEmail=$("#uEmail").val();
+            var uName=$("#uName").val();
+            var uPassword=$("#uPassword").val();
+            $.ajax({ url: "userRegisterController", data:{"uEmail":uEmail,"uName":uName,"uPassword":uPassword}
+            , success: function(){
+                alert("注册成功！")
+            }, error: function () {
+                alert("注册失败！")
+            }
+            });
+        }
         return checkForm();
     }
 </script>

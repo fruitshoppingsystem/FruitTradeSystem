@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserRegisterController {
     @Autowired
     private UsersService usersService;
-    @RequestMapping("/userRegister")
-    public String userRegister(Users users, Model model) {
+    @RequestMapping("/userRegisterController")
+    public String userRegister(String uEmail, String uName, String uPassword, Model model) {
         try {
+            Users users = new Users();
             usersService.insertUser(users);
-            model.addAttribute("msg", "注册成功！");
-            return "index";
+            return "/index";
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("msg", "注册失败！");
-            return "userRegister";
+            return "/userRegister";
         }
     }
 }
