@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.dao.MerchantsDao">
+    <insert id="insertMerchant" parameterType="com.sys.pojo.Users">
+        insert into merchants (mCertificatenum, mName, mPassword) values (#{mCertificatenum}, #{mName}, #{mPassword})
+    </insert>
+    <delete id="deleteMerchant" parameterType="integer">
+        delete from merchants where mCertificatenum = #{mCertificatenum}
+    </delete>
+    <update id="updateMerchant" parameterType="com.sys.pojo.Users">
+        update merchants
+        <set>
+            <if test="mName != null">
+                mName = #{mName},
+            </if>
+
+            <if test="mAddress != null">
+                mAddress = #{mAddress},
+            </if>
+
+            <if test="mPhonenum != null">
+                mPhonenum = #{mPhonenum},
+            </if>
+        </set>
+        where mCertificatenum = #{mCertificatenum}
+    </update>
+    <update id="updateMerchantPassword" parameterType="com.sys.pojo.Merchants">
+        update merchants set mPassword = #{mPassword} where mCertificatenum = #{mCertificatenum}
+    </update>
+    <select id="selectAllMerchants" resultType="com.sys.pojo.Merchants">
+        select * from merchants
+    </select>
+    <update id="updateScore" parameterType="com.sys.pojo.Merchants">
+        update merchants set mScore = #{mScore} where mCertificatenum = #{mCertificatenum}
+    </update>
+    <update id="updateState" parameterType="com.sys.pojo.Merchants">
+        update merchants set uState = #{uState} where mCertificatenum = #{mCertificatenum}
+    </update>
+
+</mapper>
