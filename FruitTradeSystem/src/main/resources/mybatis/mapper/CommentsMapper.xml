@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.dao.CommentsDao">
+    <insert id="insertComment" parameterType="com.sys.pojo.Comments">
+        insert into comments values (#{uEmail},#{gId},#{time},#{content},#{score})
+    </insert>
+    <delete id="deleteComment" parameterType="com.sys.pojo.Comments">
+        delete from comments where uEmail = #{uEmail} and gId = #{gId} and time = #{time}
+    </delete>
+    <select id="selectAllComments" resultType="com.sys.pojo.Comments">
+        select * from comments
+    </select>
+
+</mapper>
