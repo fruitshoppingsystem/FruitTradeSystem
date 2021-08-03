@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.dao.UsersDao">
+    <insert id="insertUser" parameterType="com.sys.pojo.Users">
+        insert into users (uEmail, uName, uPassword) values (#{uEmail}, #{uName}, #{uPassword})
+    </insert>
+    <delete id="deleteUser" parameterType="String">
+        delete from users where uEmail = #{uEmail}
+    </delete>
+    <update id="updateUser" parameterType="com.sys.pojo.Users">
+        update users
+        <set>
+            <if test="uName != null">
+                uName = #{uName},
+            </if>
+
+            <if test="uPassword != null">
+                uPassword = #{uPassword},
+            </if>
+
+            <if test="uAddress != null">
+                uAddress = #{uAddress},
+            </if>
+
+            <if test="uPhonenum != null">
+                uPhonenum = #{uPhonenum},
+            </if>
+        </set>
+        where uEmail = #{uEmail}
+    </update>
+    <update id="updateUserPassword" parameterType="com.sys.pojo.Users">
+        update users set uPassword = #{uPassword} where uEmail = #{uEmail}
+    </update>
+    <select id="selectAllUsers" resultType="com.sys.pojo.Users">
+        select * from users
+    </select>
+    <update id="updateVIP" parameterType="com.sys.pojo.Users">
+        update users set uVIP = #{uVIP} where uEmail = #{uEmail}
+    </update>
+    <update id="updateState" parameterType="com.sys.pojo.Users">
+        update users set uState = #{uState} where uEmail = #{uEmail}
+    </update>
+
+</mapper>
