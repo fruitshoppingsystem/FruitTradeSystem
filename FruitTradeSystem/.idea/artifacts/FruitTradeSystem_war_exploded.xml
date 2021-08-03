@@ -38,11 +38,6 @@
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
           <element id="library" level="project" name="Maven: javax.servlet:jsp-api:2.0" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:catalina:6.0.53" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:coyote:6.0.53" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:servlet-api:6.0.53" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:juli:6.0.53" />
-          <element id="library" level="project" name="Maven: org.apache.tomcat:annotations-api:6.0.53" />
         </element>
       </element>
       <element id="directory" name="META-INF">

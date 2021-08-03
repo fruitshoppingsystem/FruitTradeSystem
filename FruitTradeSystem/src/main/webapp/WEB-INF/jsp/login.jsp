@@ -1,15 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ch">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/index.css">
+    <script src="../../html/js/bootstrap.js"></script>
+    <script src="../../html/js/bootstrap.min.js"></script>
+    <script src="../../html/js/jquery.min.js"></script>
 </head>
 <body style="margin: 50px">
 <div class="row" style="margin-top:100px;" >
@@ -34,10 +35,10 @@
             </div>
             <button type="submit" class="btn btn-success btn-block">登录</button>
             <br />
-            <a href="index.index.jsp"><button class="btn btn-success btn-block">返回首页</button></a>
+            <a href="../../index.jsp"><button class="btn btn-success btn-block">返回首页</button></a>
             <div style="text-align: center; margin-top: 10px;">
-                <a href="userRegister.html"><button class="btn btn-info">用户注册</button></a>
-                <a href="merchantRegister.html"><button class="btn btn-info">商家注册</button></a>
+                <a href="userRegister.jsp"><button class="btn btn-info">用户注册</button></a>
+                <a href="merchantRegister.jsp"><button class="btn btn-info">商家注册</button></a>
             </div>
         </div>
     </div>

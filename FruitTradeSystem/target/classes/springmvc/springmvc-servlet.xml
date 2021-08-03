@@ -13,7 +13,7 @@
 <!--    <mvc:annotation-driven/>-->
 
     <!-- 静态资源默认servlet配置 -->
-<!--    <mvc:default-servlet-handler/>-->
+    <mvc:default-servlet-handler/>
     <!--释放静态资源，方可访问到特定后缀的资源，否则默认访问jsp-->
 <!--    <mvc:default-servlet-handler></mvc:default-servlet-handler>-->
 <!--    <mvc:resources mapping="/**" location="/html/"></mvc:resources>-->

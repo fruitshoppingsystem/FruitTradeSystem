@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页</title>
-    <link rel="stylesheet" href="html/css/bootstrap.css">
-    <link rel="stylesheet" href="html/css/bootstrap.min.css">
-    <link rel="stylesheet" href="html/css/index.css">
-    <script src="html/js/bootstrap.js"></script>
-    <script src="html/js/bootstrap.min.js"></script>
-    <script src="html/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="html/js/bootstrap.js" type="text/javascript"></script>
+    <script src="html/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="html/js/jquery.min.js" type="text/javascript"></script>
 </head>
 <body style="margin: 50px">
 <div class="modal-content" style="background-color:ghostwhite">
@@ -19,13 +20,13 @@
     </div>
     <div class="row" style="margin-top:30px;">
         <div class="col-md-2 col-md-offset-11">
-            <a href="html/userRegister.html"><span class="glyphicon glyphicon-user"></span> 用户注册</a>
+            <a href="WEB-INF/jsp/userRegister.jsp"><span class="glyphicon glyphicon-user"></span> 用户注册</a>
         </div>
         <div class="col-md-2 col-md-offset-11">
-            <a href="html/merchantRegister.html"><span class="glyphicon glyphicon-shopping-cart"></span> 商家注册</a>
+            <a href="WEB-INF/jsp/merchantRegister.jsp"><span class="glyphicon glyphicon-shopping-cart"></span> 商家注册</a>
         </div>
         <div class="col-md-2 col-md-offset-11">
-            <a href="html/login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
+            <a href="WEB-INF/jsp/login.jsp"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
         </div>
         <div class="col-md-6 col-md-offset-3" >
             <div class="input-group input-group-md" >
