@@ -33,6 +33,16 @@
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.3.9" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.4" />
+          <element id="library" level="project" name="Maven: javax.servlet:jsp-api:2.0" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:catalina:6.0.53" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:coyote:6.0.53" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:servlet-api:6.0.53" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:juli:6.0.53" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:annotations-api:6.0.53" />
         </element>
       </element>
       <element id="directory" name="META-INF">

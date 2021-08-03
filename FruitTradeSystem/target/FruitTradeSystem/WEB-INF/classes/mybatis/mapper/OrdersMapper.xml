@@ -1,0 +1,48 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.dao.OrdersDao">
+    <insert id="insertOrder" parameterType="com.sys.pojo.Orders">
+        insert into orders (uEmail, mCertificatenum, gId, oState) values (#{uEmail}, #{mCertificatenum}, #{gId}, #{oState})
+    </insert>
+    <delete id="deleteOrder" parameterType="integer">
+        delete from orders where oId = #{oId}
+    </delete>
+    <update id="updateOrder" parameterType="com.sys.pojo.Orders">
+        update orders
+        <set>
+            <if test="uEmail != null">
+                uEmail = #{uEmail},
+            </if>
+
+            <if test="mCertificatenum != null">
+                mCertificatenum = #{mCertificatenum},
+            </if>
+
+            <if test="gId != null">
+                gId = #{gId},
+            </if>
+
+            <if test="oTrackingnum != null">
+                oTrackingnum = #{oTrackingnum},
+            </if>
+        </set>
+        where oId = #{oId}
+    </update>
+    <select id="selectAllOrders" resultType="com.sys.pojo.Orders">
+        select * from orders
+    </select>
+    <select id="selectUserOrders" resultType="com.sys.pojo.Orders">
+        select * from orders where uEmail = #{uEmail}
+    </select>
+    <select id="selectMerchantOrders" resultType="com.sys.pojo.Orders">
+        select * from orders where mCertificatenum = #{mCertificatenum}
+    </select>
+    <update id="updateState" parameterType="com.sys.pojo.Orders">
+        update orders set oState = #{oState} where oId = #{oId}
+    </update>
+    <insert id="insertTrackingnum" parameterType="integer">
+        insert into orders (oTrackingnum) values (#{oTrackingnum})
+    </insert>
+
+</mapper>
