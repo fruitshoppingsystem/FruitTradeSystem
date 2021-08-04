@@ -62,64 +62,69 @@
 </head>
 <body style="margin:50px">
 <div class="modal-content" style="background-color:ghostwhite" id="back">
-    <h1 align="center">管理员界面</h1>
+    <h1 align="center" style="margin-top: 60px;">管理员界面</h1>
     <div class="menu">
         <ul class="nav nav-pills">
-            <li><a href="../../index.jsp">首页</a></li>
+            <li><a href="index.html">首页</a></li>
             <li><a id="showbox1">管理用户</a></li>
             <li><a id="showbox2">管理商家</a></li>
             <li><a id="showbox3">管理订单</a></li>
             <li><a id="showbox4">管理商品</a></li>
             <li><a id="showbox5">管理评论</a></li>
             <li><a id="showbox6">审核</a></li>
-            <li><a href="../../index.jsp">退出</a></li>
+            <li><a href="index.html">退出</a></li>
         </ul>
     </div>
     <div id="box1">
         <h1 align="center">用户列表</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
-                <td>用户名</td>
-                <td>性别</td>
+                <td >用户名</td>
                 <td>收货地址</td>
                 <td>电话</td>
-                <td>操作</td>
+                <td>是否为VIP</td>
+                <td style="width:80px">操作</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>
-                    <input type="button" value="修改" />
+                <td style="width:20px">
+                    <button>重置</button>
                 </td>
             </tr>
         </table>
     </div>
     <div id="box2">
         <h1 align="center">商家列表</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
                 <td>店铺名</td>
                 <td>描述</td>
                 <td>地址</td>
                 <td>电话</td>
-                <td>操作</td>
+                <td style="width:80px">操作</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>
-                    <input type="button" value="修改" />
+                    <input type="button" value="重置" />
                 </td>
             </tr>
         </table>
     </div>
     <div id="box3">
         <h1 align="center">订单列表</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro;">
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
                 <td>订单号</td>
                 <td>商品名称</td>
@@ -133,6 +138,7 @@
                 <td>状态</td>
                 <td>操作</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
@@ -153,7 +159,8 @@
     </div>
     <div id="box4">
         <h1 align="center">商品列表</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
                 <td>商品编号</td>
                 <td>商品名称</td>
@@ -163,8 +170,9 @@
                 <td>商品规格</td>
                 <td>商家名称</td>
                 <td>商家电话</td>
-                <td>操作</td>
+                <td style="width:80px">操作</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
@@ -182,15 +190,17 @@
     </div>
     <div id="box5">
         <h1 align="center">评论列表</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
                 <td>评论人</td>
                 <td>评论时间</td>
                 <td>对应商品</td>
                 <td>对应店铺</td>
                 <td>评论内容</td>
-                <td>操作</td>
+                <td style="width:80px">操作</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
@@ -204,13 +214,15 @@
         </table>
     </div>
     <div id="box6">
-        <h1 align="center">审核中……</h1>
-        <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
+        <h1 align="center">审核列表</h1>
+        <table class="table table-hover table-bordered; text-center" border="2" style="table-layout: fixed">
+            <thead>
             <tr>
                 <td>店铺名称</td>
                 <td>店铺营业证书编号</td>
-                <td>审核结果</td>
+                <td style="width:200px">审核结果</td>
             </tr>
+            </thead>
             <tr>
                 <td></td>
                 <td></td>
