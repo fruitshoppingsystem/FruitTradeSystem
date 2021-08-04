@@ -16,9 +16,9 @@ public class UserController {
     @Autowired
     private UsersService usersService;
 
-    @RequestMapping("/checkcaptcha")
-    public @ResponseBody boolean checkcaptcha(HttpSession httpSession,@RequestParam String captcha){
-        String captcha1 = (String)httpSession.getAttribute("Captcha");
+    @RequestMapping("/checkCaptcha")
+    public @ResponseBody boolean checkCaptcha(HttpSession httpSession, @RequestParam("captcha") String captcha){
+        String captcha1 = (String) httpSession.getAttribute("Captcha");
         if(captcha.equals(captcha1)){
             return true;
         }else {
@@ -26,13 +26,20 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/deletecaptcha")
-    public @ResponseBody void deletecaptcha(HttpSession httpSession){
+    @RequestMapping("/deleteCaptcha")
+    public @ResponseBody void deleteCaptcha(HttpSession httpSession){
         httpSession.removeAttribute("Captcha");
     }
 
-    public void userRegister(Users users, HttpSession httpSession){
-        usersService.insertUser(users);
+    @RequestMapping("/userRegister")
+    @ResponseBody
+    public Boolean userRegister(String uEmail, String uName, String uPassword){
+        if (usersService.findUserByEmail(uEmail) == 0){
+            usersService.userRegister(uEmail, uName, uPassword);
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

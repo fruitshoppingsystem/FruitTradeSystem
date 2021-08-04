@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Random;
@@ -21,7 +21,7 @@ public class SendEmailController {
     private String emailFrom;
     /*验证码发送*/
     @RequestMapping("/send")
-    public Boolean senMsg(HttpSession httpSession, @RequestParam("userEmail") String userEmail) {
+    public @ResponseBody Boolean senMsg(HttpSession httpSession, @RequestParam("userEmail") String userEmail) {
         //生成六位数验证码
         String Captcha = String.valueOf(new Random().nextInt(899999) + 100000);
         httpSession.setAttribute("Captcha",Captcha);//存储验证码

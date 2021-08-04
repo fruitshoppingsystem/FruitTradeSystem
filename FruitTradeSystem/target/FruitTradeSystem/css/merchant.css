@@ -1,0 +1,27 @@
+#box1{
+    margin-top: 50px;
+    margin-left: 600px;
+    display: none;
+}
+#box2{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box3{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+.menu{
+    margin-top: 100px;
+    margin-left: 450px;
+}
+
+#back{
+    height: 1000px;
+}
+
+h1{
+    margin-top: 100px;
+}
