@@ -14,6 +14,12 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService {
     @Autowired
     private UsersDao usersDao;
+
+    @Override
+    public void userRegister(String uEmail, String uName, String uPassword) {
+        usersDao.userRegister(uEmail, uName, uPassword);
+    }
+
     @Override
     public void insertUser(Users users) {
         usersDao.insertUser(users);
@@ -37,6 +43,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<Users> selectAllUsers() {
         return usersDao.selectAllUsers();
+    }
+
+    @Override
+    public int findUserByEmail(String uEmail) {
+        return usersDao.findUserByEmail(uEmail);
     }
 
     @Override

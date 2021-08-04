@@ -35,10 +35,10 @@
             </div>
             <button type="submit" class="btn btn-success btn-block">登录</button>
             <br />
-            <a href="../../index.jsp"><button class="btn btn-success btn-block">返回首页</button></a>
+            <a href="${pageContext.request.contextPath}/page/indexPage"><button class="btn btn-success btn-block">返回首页</button></a>
             <div style="text-align: center; margin-top: 10px;">
-                <a href="userRegister.jsp"><button class="btn btn-info">用户注册</button></a>
-                <a href="merchantRegister.jsp"><button class="btn btn-info">商家注册</button></a>
+                <a href="${pageContext.request.contextPath}/page/userRegisterPage"><button class="btn btn-info">用户注册</button></a>
+                <a href="${pageContext.request.contextPath}/page/merchantRegisterPage"><button class="btn btn-info">商家注册</button></a>
             </div>
         </div>
     </div>

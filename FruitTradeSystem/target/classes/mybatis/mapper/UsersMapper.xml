@@ -2,6 +2,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sys.dao.UsersDao">
+    <insert id="userRegister">
+        insert into users (uEmail, uName, uPassword) values (#{uEmail}, #{uName}, #{uPassword})
+    </insert>
     <insert id="insertUser" parameterType="com.sys.pojo.Users">
         insert into users (uEmail, uName, uPassword) values (#{uEmail}, #{uName}, #{uPassword})
     </insert>
@@ -34,6 +37,9 @@
     </update>
     <select id="selectAllUsers" resultType="com.sys.pojo.Users">
         select * from users
+    </select>
+    <select id="findUserByEmail" parameterType="String" resultType="int">
+        select count(*) from users where uEmail = #{uEmail}
     </select>
     <update id="updateVIP" parameterType="com.sys.pojo.Users">
         update users set uVIP = #{uVIP} where uEmail = #{uEmail}

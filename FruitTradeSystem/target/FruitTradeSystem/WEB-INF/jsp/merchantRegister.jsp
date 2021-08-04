@@ -1,14 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ch">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商家注册</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../html/js/bootstrap.js"></script>
+    <script src="../../html/js/bootstrap.min.js"></script>
+    <script src="../../html/js/jquery.min.js"></script>
 </head>
 <body style="margin:50px">
 <div class="row" style="margin-top:200px;">
@@ -37,8 +38,8 @@
                 <button type="reset" class="btn btn-success btn-block">重置</button>
             </div>
             <div style="text-align: center; margin-top: 10px;">
-                <a href="index.index.jsp"><button class="btn btn-info">返回首页</button></a>
-                <a href="login.html"><button class="btn btn-info">去登录</button></a>
+                <a href="${pageContext.request.contextPath}/page/indexPage"><button class="btn btn-info">返回首页</button></a>
+                <a href="${pageContext.request.contextPath}/page/loginPage"><button class="btn btn-info">去登录</button></a>
             </div>
         </div>
     </div>

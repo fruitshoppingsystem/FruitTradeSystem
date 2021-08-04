@@ -6,22 +6,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="com.sys.controller"/>
-<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <property name="prefix" value="/html/"/>-->
-<!--        <property name="suffix" value=".html"/>-->
-<!--    </bean>-->
-<!--    <mvc:annotation-driven/>-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <mvc:annotation-driven/>
 
     <!-- 静态资源默认servlet配置 -->
     <mvc:default-servlet-handler/>
-    <!--释放静态资源，方可访问到特定后缀的资源，否则默认访问jsp-->
-<!--    <mvc:default-servlet-handler></mvc:default-servlet-handler>-->
-<!--    <mvc:resources mapping="/**" location="/html/"></mvc:resources>-->
-    <!-- 配置返回视图的路径，以及识别后缀是jsp文件 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/html/" />
-        <property name="suffix" value=".jsp" />
-    </bean>
 
     <!--QQ发送邮箱验证码-->
     <!--读取属性文件-->
