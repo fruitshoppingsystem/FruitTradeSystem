@@ -1,0 +1,38 @@
+#box1{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box2{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box3{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box4{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box5{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+#box6{
+    margin-top: 50px;
+    margin-left: auto;
+    display: none;
+}
+.menu{
+    margin-top: 100px;
+    margin-left: 400px;
+}
+
+#back{
+    height: 1000px;
+}
