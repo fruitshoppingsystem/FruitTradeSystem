@@ -41,10 +41,16 @@
     <select id="findUserByEmail" parameterType="String" resultType="int">
         select count(*) from users where uEmail = #{uEmail}
     </select>
+    <select id="selectPasswordByEmail" parameterType="String" resultType="String">
+        select uPassword from users where uEmail = #{uEmail}
+    </select>
+    <select id="selectUserLogin" resultType="boolean">
+        select count(*) from users where uState = 1
+    </select>
     <update id="updateVIP" parameterType="com.sys.pojo.Users">
         update users set uVIP = #{uVIP} where uEmail = #{uEmail}
     </update>
-    <update id="updateState" parameterType="com.sys.pojo.Users">
+    <update id="updateState">
         update users set uState = #{uState} where uEmail = #{uEmail}
     </update>
 

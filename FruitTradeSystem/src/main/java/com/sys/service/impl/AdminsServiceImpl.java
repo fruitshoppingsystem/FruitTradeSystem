@@ -18,4 +18,24 @@ public class AdminsServiceImpl implements AdminsService {
     public List<Admins> selectAdminById(int aId) {
         return adminsDao.selectAdminById(aId);
     }
+
+    @Override
+    public int findAdminById(int aId) {
+        return adminsDao.findAdminById(aId);
+    }
+
+    @Override
+    public String selectPasswordById(int aId) {
+        return adminsDao.selectPasswordById(aId);
+    }
+
+    @Override
+    public void updateState(int aId, int aState) {
+        adminsDao.updateState(aId, aState);
+    }
+
+    @Override
+    public Boolean selectAdminLogin() {
+        return adminsDao.selectAdminLogin();
+    }
 }

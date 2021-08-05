@@ -17,6 +17,8 @@ public interface UsersDao {
     void updateUserPassword(Users users);
     List<Users> selectAllUsers();
     int findUserByEmail(String uEmail);
+    String selectPasswordByEmail(String uEmail);
+    Boolean selectUserLogin();
     void updateVIP(Users users);
-    void updateState(Users users);
+    void updateState(@Param("uEmail")String uEmail,@Param("uState") int uState);
 }

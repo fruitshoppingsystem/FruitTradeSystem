@@ -2,10 +2,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sys.dao.MerchantsDao">
+    <insert id="merchantRegister">
+        insert into merchants (mCertificatenum, mName, mPassword) values (#{mCertificatenum}, #{mName}, #{mPassword})
+    </insert>
     <insert id="insertMerchant" parameterType="com.sys.pojo.Users">
         insert into merchants (mCertificatenum, mName, mPassword) values (#{mCertificatenum}, #{mName}, #{mPassword})
     </insert>
-    <delete id="deleteMerchant" parameterType="integer">
+    <delete id="deleteMerchant" parameterType="String">
         delete from merchants where mCertificatenum = #{mCertificatenum}
     </delete>
     <update id="updateMerchant" parameterType="com.sys.pojo.Users">
@@ -31,11 +34,23 @@
     <select id="selectAllMerchants" resultType="com.sys.pojo.Merchants">
         select * from merchants
     </select>
+    <select id="findMerchantByCertificatenum" parameterType="String" resultType="int">
+        select count(*) from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectPasswordByCertificatenum" parameterType="String" resultType="String">
+        select mPassword from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectMerchantState" parameterType="String" resultType="int">
+        select mState from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectMerchantLogin" resultType="boolean">
+        select count(*) from merchants where mState = 3
+    </select>
     <update id="updateScore" parameterType="com.sys.pojo.Merchants">
         update merchants set mScore = #{mScore} where mCertificatenum = #{mCertificatenum}
     </update>
-    <update id="updateState" parameterType="com.sys.pojo.Merchants">
-        update merchants set uState = #{uState} where mCertificatenum = #{mCertificatenum}
+    <update id="updateState">
+        update merchants set mState = #{mState} where mCertificatenum = #{mCertificatenum}
     </update>
 
 </mapper>

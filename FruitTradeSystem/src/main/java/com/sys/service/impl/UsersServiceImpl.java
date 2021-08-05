@@ -51,13 +51,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public String selectPasswordByEmail(String uEmail) {
+        return usersDao.selectPasswordByEmail(uEmail);
+    }
+
+    @Override
+    public Boolean selectUserLogin() {
+        return usersDao.selectUserLogin();
+    }
+
+    @Override
     public void updateVIP(Users users) {
         usersDao.updateVIP(users);
     }
 
     @Override
-    public void updateState(Users users) {
-        usersDao.updateState(users);
+    public void updateState(String uEmail, int uState) {
+        usersDao.updateState(uEmail, uState);
     }
 
 }

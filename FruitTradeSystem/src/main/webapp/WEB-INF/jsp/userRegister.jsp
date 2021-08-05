@@ -16,7 +16,6 @@
     <div class="col-md-6 col-md-offset-3" >
         <div class="well col-md-12">
             <h3 align="center">用户注册</h3>
-            <form id="form">
             <div class="input-group input-group-md">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-folder-close" aria-hidden="true"></i></span>
                 <input id="uEmail" type="email" class="form-control" placeholder="输入邮箱" aria-describedby="sizing-addon1" onblur="checkEmail()">
@@ -48,7 +47,6 @@
                 <input id="register" type="submit" class="btn bg-success btn-block" onblur="checkForm()" onclick="submitT()" value="注册">
                 <input type="reset" class="btn bg-success btn-block" value="重置">
             </div>
-            </form>
             <div style="text-align: center; margin-top: 10px;">
                 <a href="${pageContext.request.contextPath}/page/indexPage"><button class="btn btn-info">返回首页</button></a>
                 <a href="${pageContext.request.contextPath}/page/loginPage"><button class="btn btn-info">去登录</button></a>
@@ -56,6 +54,9 @@
         </div>
     </div>
 </div>
+<form id="form">
+
+</form>
 </body>
 <script type="text/javascript">
     $("#get-captcha").click(function () {
@@ -132,10 +133,9 @@
 
     function checkName() {
         //获取用户名输入项
-        var userNname = document.getElementById("uName");
-        var uName = userNname.value;
+        var userName = document.getElementById("uName");
+        var uName = userName.value;
         if (uName.length < 1 || uName.length > 10) {
-
             trip("name_trip", "账号长度为1-10位!!");
             return false;
         } else {
@@ -212,8 +212,14 @@
                         alert("注册成功");
                         <%--window.location.href = "${pageContext.request.contextPath}/page/loginPage";--%>
                         <%--top.location='${pageContext.request.contextPath}/WEB-INF/jsp/login.jsp';--%>
+                        document.getElementById("form").action="${pageContext.request.contextPath}/page/loginPage";
+                        document.getElementById("form").method="post";
+                        document.getElementById("form").submit();
                     }else{
                         alert("注册失败");
+                        document.getElementById("form").action="${pageContext.request.contextPath}/page/userRegisterPage";
+                        document.getElementById("form").method="post";
+                        document.getElementById("form").submit();
                         <%--window.location.href = "${pageContext.request.contextPath}/page/userRegisterPage";--%>
                     }
                 },error:function () {
