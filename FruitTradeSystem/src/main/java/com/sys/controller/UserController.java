@@ -1,6 +1,5 @@
 package com.sys.controller;
 
-import com.sys.pojo.Users;
 import com.sys.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +39,21 @@ public class UserController {
         }else {
             return false;
         }
+    }
+
+    @RequestMapping("/userLogin")
+    @ResponseBody
+    public Boolean userLogin(String uEmail, String uPassword){
+        if (usersService.findUserByEmail(uEmail) != 0){
+            String password = usersService.selectPasswordByEmail(uEmail);
+            if (uPassword.equals(password)){
+                usersService.updateState(uEmail, 1);
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
     }
 
 }
