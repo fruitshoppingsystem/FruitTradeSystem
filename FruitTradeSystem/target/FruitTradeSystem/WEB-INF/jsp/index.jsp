@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首页</title>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/index.css">
-    <script src="../../html/js/bootstrap.js"></script>
-    <script src="../../html/js/bootstrap.min.js"></script>
-    <script src="../../html/js/jquery-3.6.0.js"></script>
-    <script src="../../html/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    <script src="${pageContext.request.contextPath}/html/js/jquery-3.6.0.js"></script>
+    <script src="${pageContext.request.contextPath}/html/js/jquery-3.6.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/html/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/html/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function x() {
 

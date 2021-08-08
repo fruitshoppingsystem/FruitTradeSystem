@@ -1,12 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>商家个人界面</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link href="../../css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../css/merchant.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/merchant.css" />
+    <script src="${pageContext.request.contextPath}/html/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/html/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/html/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         window.onload = function(){
             document.getElementById("showbox1").onclick = function(){
@@ -29,38 +33,34 @@
 </head>
 <body style="margin:50px">
 <div class="modal-content" style="background-color:ghostwhite" id="back">
-    <h1 align="center">商家名称</h1>
+    <h1 align="center">${mName}</h1><h6 align="center"><label>评分：</label>${mScore}</h6>
+    <p align="center"><label>地址：</label>${mAddress}  <label>电话：</label>${mPhonenum}</p>
     <div class="menu">
         <ul class="nav nav-pills">
-            <li><a href="index.jsp">首页</a></li>
-            <li><a id="showbox1">店铺信息</a></li>
+            <li><a ><button style="border-style: hidden; background:none" onclick="index()">首页</button></a></li>
+            <li><a id="showbox1">修改店铺信息</a></li>
             <li><a id="showbox2">我的商品</a></li>
             <li><a id="showbox3">我的订单</a></li>
-            <li><a href="index.jsp">退出登录</a></li>
+            <li><a ><button style="border-style: hidden; background:none" onclick="logout()">退出登录</button></a></li>
             <li><a href="#">注销店铺</a></li>
         </ul>
     </div>
     <div id="box1">
         <h3>店铺信息</h3>
-        <table class="table-bordered" border="0" style="background-color:gainsboro">
-            <tr>
-                <td><label>地址</label></td>
-                <td>
-                    <input type="text" />
-                </td>
-            </tr>
-            <tr>
-                <td><label>电话</label></td>
-                <td>
-                    <input type="text" />
-                </td>
-            </tr>
-        </table>
-        <input type="button" value="修改" />
+        <form id="merchantInfo">
+            <label><input type="hidden" name="mCertificatenum" id="mCertificatenum" value="${mCertificatenum}"></label>
+            <label>用户名：<input type="text" name="mName" id="mName" value="${mName}"></label>
+            <br>
+            <label>地址：<input type="text" name="mAddress" id="mAddress" value="${mAddress}"></label>
+            <br>
+            <label>电话：<input type="text" name="mPhonenum" id="mPhonenum" value="${mPhonenum}" ></label>
+            <br>
+           <input type="button" value="修改" onclick="updateMerchantInfo()">
+        </form>
     </div>
     <div id="box2">
         <h3 align="center">我的商品</h3>
-        <a href="addGoods.jsp"><button class="active">添加商品</button></a>
+        <a ><button class="active" onclick="addGoods()">添加商品</button></a>
         <table class="table table-hover table-bordered" border="2" style="background-color:gainsboro">
             <tr>
                 <td>商品名称</td>
@@ -71,18 +71,20 @@
                 <td>剩余库存</td>
                 <td>操作</td>
             </tr>
+            <c:forEach items="${goods}" var="good">
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>${good.gName}</td>
+                <td>${good.gPrice}</td>
+                <td>${good.gPlace}</td>
+                <td>${good.gSize}</td>
+                <td>${good.gVIP}</td>
+                <td>${good.gSum}</td>
                 <td>
-                    <input type="button" value="修改" />
+                    <input type="button" value="修改" onclick="updateGood(${good.gId})"/>
                     <input type="button" value="删除" />
                 </td>
             </tr>
+            </c:forEach>
         </table>
     </div>
     <div id="box3">
@@ -99,21 +101,91 @@
                 <td>状态</td>
                 <td>操作</td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <input type="button" value="上传快递单号" />
-                </td>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="button" value="上传快递单号" />
+                    </td>
+                </tr>
         </table>
     </div>
 </div>
+<form id="form">
+
+</form>
 </body>
+<script type="text/javascript">
+    function logout() {
+        var mCertificate = "${mCertificatenum}";
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/merchantLogout",
+            datatype : "String",
+            type : "post",
+            data:{
+                mCertificatenum: mCertificate
+            },success:function (res) {
+                if (res === true){
+                    alert("退出成功");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
+                }else{
+                    alert("退出失败");
+                }
+            },error:function () {
+                alert("失败");
+            }
+        });
+    }
+
+    function index() {
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+
+    function updateMerchantInfo() {
+        var mCertificatenum = $("#mCertificatenum").val();
+        var mName = $("#mName").val();
+        var mAddress = $("#mAddress").val();
+        var mPhonenum = $("#mPhonenum").val();
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/updateMerchant",
+            datatype : "String",
+            type : "post",
+            data:{
+                "mCertificatenum":mCertificatenum, "mName":mName, "mAddress":mAddress, "mPhonenum":mPhonenum
+            },success:function () {
+                alert("修改成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage?mCertificatenum="+mCertificatenum;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("修改失败");
+            }
+        });
+    }
+
+    function addGoods() {
+        var mCertificatenum = "${mCertificatenum}";
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/addGoodsPage?mCertificatenum="+mCertificatenum;
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+
+    function updateGood(gId) {
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/updateGoodsPage?gId="+gId;
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+</script>
 </html>

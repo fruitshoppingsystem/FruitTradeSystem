@@ -40,6 +40,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectGoodsByCertificatenum(String mCertificatenum) {
+        return goodsDao.selectGoodsByCertificatenum(mCertificatenum);
+    }
+
+    @Override
+    public Goods selectGoodById(Integer gId) {
+        return goodsDao.selectGoodById(gId);
+    }
+
+    @Override
     public void updateGoodSum(Goods goods) {
         goodsDao.updateGoodSum(goods);
     }

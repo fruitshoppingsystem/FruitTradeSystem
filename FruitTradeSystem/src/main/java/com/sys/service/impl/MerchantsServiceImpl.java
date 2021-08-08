@@ -31,8 +31,8 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
-    public void updateMerchant(Merchants merchants) {
-        merchantsDao.updateMerchant(merchants);
+    public void updateMerchant(String mCertificatenum, String mName, String mAddress, String mPhonenum) {
+        merchantsDao.updateMerchant(mCertificatenum, mName, mAddress, mPhonenum);
     }
 
     @Override
@@ -56,8 +56,33 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
+    public String selectNameByCertificatenum(String mCertificatenum) {
+        return merchantsDao.selectNameByCertificatenum(mCertificatenum);
+    }
+
+    @Override
+    public String selectAddressByCertificatenum(String mCertificatenum) {
+        return merchantsDao.selectAddressByCertificatenum(mCertificatenum);
+    }
+
+    @Override
+    public String selectPhoneByCertificatenum(String mCertificatenum) {
+        return merchantsDao.selectPhoneByCertificatenum(mCertificatenum);
+    }
+
+    @Override
+    public int selectScoreByCertificatenum(String mCertificatenum) {
+        return merchantsDao.selectScoreByCertificatenum(mCertificatenum);
+    }
+
+    @Override
     public Boolean selectMerchantLogin() {
         return merchantsDao.selectMerchantLogin();
+    }
+
+    @Override
+    public String selectLoginCertificatenum() {
+        return merchantsDao.selectLoginCertificatenum();
     }
 
     @Override

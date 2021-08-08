@@ -2,6 +2,7 @@ package com.sys.dao;
 
 import com.sys.pojo.Orders;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public interface OrdersDao {
     void deleteOrder(int oId);
     void updateOrder(Orders orders);
     List<Orders> selectAllOrders();
-    List<Orders> selectUserOrders();
-    List<Orders> selectMerchantOrders();
+    List<Orders> selectUserOrders(String uEmail);
+    List<Orders> selectMerchantOrders(String mCertificatenum);
     void updateState(Orders orders);
-    void insertTrackingnum(int oTrackingnum);
+    void updateTrackingnum(@Param("oTrackingnum")int oTrackingnum, @Param("oId")int oId);
 }

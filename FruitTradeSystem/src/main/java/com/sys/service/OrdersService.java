@@ -1,6 +1,7 @@
 package com.sys.service;
 
 import com.sys.pojo.Orders;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ public interface OrdersService {
     void deleteOrder(int oId);
     void updateOrder(Orders orders);
     List<Orders> selectAllOrders();
-    List<Orders> selectUserOrders();
-    List<Orders> selectMerchantOrders();
+    List<Orders> selectUserOrders(String uEmail);
+    List<Orders> selectMerchantOrders(String mCertificatenum);
     void updateState(Orders orders);
-    void insertTrackingnum(int oTrackingnum);
+    void updateTrackingnum(@Param("oTrackingnum")int oTrackingnum, @Param("oId")int oId);
 }

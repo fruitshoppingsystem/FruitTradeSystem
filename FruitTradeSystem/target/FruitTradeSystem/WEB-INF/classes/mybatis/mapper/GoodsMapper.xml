@@ -48,6 +48,12 @@
     <select id="selectGoodsByName" resultType="com.sys.pojo.Goods">
         select * from goods where gName = #{gName}
     </select>
+    <select id="selectGoodsByCertificatenum" resultType="com.sys.pojo.Goods">
+        select * from goods where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectGoodById" resultType="com.sys.pojo.Goods">
+        select * from goods where gId = #{gId}
+    </select>
     <update id="updateGoodSum" parameterType="com.sys.pojo.Goods">
         update goods set gSum = #{gSum} where gId = #{gId}
     </update>

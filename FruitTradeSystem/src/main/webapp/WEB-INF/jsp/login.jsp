@@ -178,7 +178,7 @@ function merchantLogin() {
             },success:function (res) {
                 if (res === true){
                     alert("登录成功");
-                    document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage";
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage?mCertificatenum="+mCertificatenum;
                     document.getElementById("form").method="post";
                     document.getElementById("form").submit();
                 }else{

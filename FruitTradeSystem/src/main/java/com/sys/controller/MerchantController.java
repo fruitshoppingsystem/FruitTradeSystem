@@ -1,5 +1,6 @@
 package com.sys.controller;
 
+import com.sys.pojo.Merchants;
 import com.sys.service.MerchantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,5 +53,29 @@ public class MerchantController {
             String msg = "账号不存在";
             return false;
         }
+    }
+    @RequestMapping("/merchantLogout")
+    @ResponseBody
+    public Boolean merchantLogout(String mCertificatenum){
+        if (merchantsService.selectMerchantState(mCertificatenum) == 3){
+            merchantsService.updateState(mCertificatenum, 2);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @RequestMapping("/updateMerchant")
+    @ResponseBody
+    public String updateMerchant(String mCertificatenum, String mName, String mAddress, String mPhonenum){
+        merchantsService.updateMerchant(mCertificatenum, mName, mAddress, mPhonenum);
+        return "success";
+    }
+
+    @RequestMapping("/deleteMerchant")
+    @ResponseBody
+    public Boolean deleteMerchant(String mCertificatenum){
+        merchantsService.deleteMerchant(mCertificatenum);
+        return true;
     }
 }

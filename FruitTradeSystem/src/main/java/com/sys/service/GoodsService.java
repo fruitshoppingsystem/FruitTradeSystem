@@ -10,5 +10,7 @@ public interface GoodsService {
     void updateGood(Goods goods);
     List<Goods> selectAllGoods();
     List<Goods> selectGoodsByName(String gName);
+    List<Goods> selectGoodsByCertificatenum(String mCertificatenum);
+    Goods selectGoodById(Integer gId);
     void updateGoodSum(Goods goods);
 }
