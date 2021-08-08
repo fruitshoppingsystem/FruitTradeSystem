@@ -4,14 +4,16 @@ public class Admins {
     private Integer aId;
     private String aName;
     private String aPassword;
+    private Integer aState;
 
     public Admins() {
     }
 
-    public Admins(Integer aId, String aName, String aPassword) {
+    public Admins(Integer aId, String aName, String aPassword, Integer aState) {
         this.aId = aId;
         this.aName = aName;
         this.aPassword = aPassword;
+        this.aState = aState;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class Admins {
                 "aId=" + aId +
                 ", aName='" + aName + '\'' +
                 ", aPassword='" + aPassword + '\'' +
+                ", aState='" + aState + '\'' +
                 '}';
     }
 
@@ -45,5 +48,13 @@ public class Admins {
 
     public void setaPassword(String aPassword) {
         this.aPassword = aPassword;
+    }
+
+    public Integer getaState() {
+        return aState;
+    }
+
+    public void setaState(Integer aState) {
+        this.aState = aState;
     }
 }

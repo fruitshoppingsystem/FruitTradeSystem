@@ -46,6 +46,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<Users> selectUsersByEmail(String uEmail) {
+        return usersDao.selectUsersByEmail(uEmail);
+    }
+
+    @Override
     public int findUserByEmail(String uEmail) {
         return usersDao.findUserByEmail(uEmail);
     }

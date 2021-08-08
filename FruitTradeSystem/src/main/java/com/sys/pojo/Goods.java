@@ -4,23 +4,33 @@ package com.sys.pojo;
 
 public class Goods {
     private Integer gId;
-    private Integer mCertificatenum;
+    private String mCertificatenum;
     private String gName;
     private Float gPrice;
     private Integer gSum;
-    private String gPlcae;
+    private String gPlace;
     private String gSize;
-    private Short gVIP;
+    private Integer gVIP;
     private String gImage;
 
 
-    public Goods(Integer gId, Integer mCertificatenum, String gName, Float gPrice, Integer gSum, String gPlcae, String gSize, Short gVIP, String gImage) {
-        this.gId = gId;
+    public Goods(String mCertificatenum, String gName, Float gPrice, Integer gSum, String gPlace, String gSize, Integer gVIP, String gImage) {
         this.mCertificatenum = mCertificatenum;
         this.gName = gName;
         this.gPrice = gPrice;
         this.gSum = gSum;
-        this.gPlcae = gPlcae;
+        this.gPlace = gPlace;
+        this.gSize = gSize;
+        this.gVIP = gVIP;
+        this.gImage = gImage;
+    }
+
+    public Goods(Integer gId, String gName, Float gPrice, Integer gSum, String gPlace, String gSize, Integer gVIP, String gImage) {
+        this.gId = gId;
+        this.gName = gName;
+        this.gPrice = gPrice;
+        this.gSum = gSum;
+        this.gPlace = gPlace;
         this.gSize = gSize;
         this.gVIP = gVIP;
         this.gImage = gImage;
@@ -34,7 +44,7 @@ public class Goods {
                 ", gName='" + gName + '\'' +
                 ", gPrice=" + gPrice +
                 ", gSum=" + gSum +
-                ", gPlcae='" + gPlcae + '\'' +
+                ", gPlcae='" + gPlace + '\'' +
                 ", gSize='" + gSize + '\'' +
                 ", gVIP=" + gVIP +
                 ", gImage='" + gImage + '\'' +
@@ -49,11 +59,11 @@ public class Goods {
         this.gId = gId;
     }
 
-    public Integer getmCertificatenum() {
+    public String getmCertificatenum() {
         return mCertificatenum;
     }
 
-    public void setmCertificatenum(Integer mCertificatenum) {
+    public void setmCertificatenum(String mCertificatenum) {
         this.mCertificatenum = mCertificatenum;
     }
 
@@ -81,12 +91,12 @@ public class Goods {
         this.gSum = gSum;
     }
 
-    public String getgPlcae() {
-        return gPlcae;
+    public String getgPlace() {
+        return gPlace;
     }
 
-    public void setgPlcae(String gPlcae) {
-        this.gPlcae = gPlcae;
+    public void setgPlace(String gPlace) {
+        this.gPlace = gPlace;
     }
 
     public String getgSize() {
@@ -97,11 +107,11 @@ public class Goods {
         this.gSize = gSize;
     }
 
-    public Short getgVIP() {
+    public Integer getgVIP() {
         return gVIP;
     }
 
-    public void setgVIP(Short gVIP) {
+    public void setgVIP(Integer gVIP) {
         this.gVIP = gVIP;
     }
 

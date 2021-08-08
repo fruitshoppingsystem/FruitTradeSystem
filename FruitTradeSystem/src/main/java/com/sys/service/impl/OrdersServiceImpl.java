@@ -35,13 +35,13 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Orders> selectUserOrders() {
-        return ordersDao.selectUserOrders();
+    public List<Orders> selectUserOrders(String uEmail) {
+        return ordersDao.selectUserOrders(uEmail);
     }
 
     @Override
-    public List<Orders> selectMerchantOrders() {
-        return ordersDao.selectMerchantOrders();
+    public List<Orders> selectMerchantOrders(String mCertificatenum) {
+        return ordersDao.selectMerchantOrders(mCertificatenum);
     }
 
     @Override
@@ -50,7 +50,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public void insertTrackingnum(int oTrackingnum) {
-        ordersDao.insertTrackingnum(oTrackingnum);
+    public void updateTrackingnum(int oTrackingnum, int oId) {
+        ordersDao.updateTrackingnum(oTrackingnum, oId);
     }
+
 }

@@ -5,4 +5,16 @@
     <select id="selectAdminById" parameterType="Integer" resultType="com.sys.pojo.Admins">
         select * from admins where aId = #{aId}
     </select>
+    <select id="findAdminById" parameterType="integer" resultType="int">
+        select count(*) from admins where aId = #{aId}
+    </select>
+    <select id="selectPasswordById" parameterType="int" resultType="string">
+        select aPassword from admins where aId = #{aId}
+    </select>
+    <update id="updateState">
+        update admins set aState = #{aState} where aId = #{aId}
+    </update>
+    <select id="selectAdminLogin" resultType="boolean">
+        select count(*) from admins where aState = 1
+    </select>
 </mapper>

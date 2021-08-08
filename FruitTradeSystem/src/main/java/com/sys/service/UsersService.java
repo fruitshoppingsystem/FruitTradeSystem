@@ -11,6 +11,7 @@ public interface UsersService {
     void updateUser(Users users);
     void updateUserPassword(Users users);
     List<Users> selectAllUsers();
+    List<Users> selectUsersByEmail(String uEmail);
     int findUserByEmail(String uEmail);
     String selectPasswordByEmail(String uEmail);
     Boolean selectUserLogin();

@@ -178,7 +178,7 @@ function merchantLogin() {
             },success:function (res) {
                 if (res === true){
                     alert("登录成功");
-                    document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage";
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage?mCertificatenum="+mCertificatenum;
                     document.getElementById("form").method="post";
                     document.getElementById("form").submit();
                 }else{
@@ -194,7 +194,33 @@ function merchantLogin() {
     }
 }
 function adminLogin() {
-
+    if (checkForm()){
+        var aId=$("#input").val();
+        var aPassword=$("#password").val();
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/admin/adminLogin",
+            datatype : "String",
+            type : "post",
+            data:{
+                aId:aId, aPassword:aPassword
+            },success:function (res) {
+                if (res === true){
+                    alert("登录成功");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage";
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
+                }else{
+                    alert("登录失败");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/loginPage";
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
+                }
+            },error:function () {
+                alert("失败");
+            }
+        });
+    }
 }
 </script>
 </html>

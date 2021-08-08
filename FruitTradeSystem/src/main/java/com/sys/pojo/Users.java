@@ -6,10 +6,10 @@ public class Users {
     private String uPassword;
     private String uAddress;
     private Integer uPhonenum;
-    private Short uVIP;
-    private Short uState;
+    private Integer uVIP;
+    private Integer uState;
 
-    public Users(String uEmail, String uName, String uPassword, String uAddress, Integer uPhonenum, Short uVIP, Short uState) {
+    public Users(String uEmail, String uName, String uPassword, String uAddress, Integer uPhonenum, Integer uVIP, Integer uState) {
         this.uEmail = uEmail;
         this.uName = uName;
         this.uPassword = uPassword;
@@ -72,19 +72,19 @@ public class Users {
         this.uPhonenum = uPhonenum;
     }
 
-    public Short getuVIP() {
+    public Integer getuVIP() {
         return uVIP;
     }
 
-    public void setuVIP(Short uVIP) {
+    public void setuVIP(Integer uVIP) {
         this.uVIP = uVIP;
     }
 
-    public Short getuState() {
+    public Integer getuState() {
         return uState;
     }
 
-    public void setuState(Short uState) {
+    public void setuState(Integer uState) {
         this.uState = uState;
     }
 

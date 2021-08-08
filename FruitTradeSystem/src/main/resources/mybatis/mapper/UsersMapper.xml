@@ -38,6 +38,9 @@
     <select id="selectAllUsers" resultType="com.sys.pojo.Users">
         select * from users
     </select>
+    <select id="selectUsersByEmail" parameterType="String" resultType="com.sys.pojo.Users">
+        select * from users where uEmail = #{uEmail}
+    </select>
     <select id="findUserByEmail" parameterType="String" resultType="int">
         select count(*) from users where uEmail = #{uEmail}
     </select>

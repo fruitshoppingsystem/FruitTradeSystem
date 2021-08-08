@@ -9,12 +9,17 @@ public interface MerchantsService {
     void merchantRegister(String mCertificate, String mName, String mPassword);
     void insertMerchant(Merchants merchants);
     void deleteMerchant(String mCertificatenum);
-    void updateMerchant(Merchants merchants);
+    void updateMerchant(String mCertificatenum, String mName, String mAddress, String mPhonenum);
     void updateMerchantPassword(Merchants merchants);
     List<Merchants> selectAllMerchants();
     int findMerchantByCertificatenum(String mCertificatenum);
     String selectPasswordByCertificatenum(String mCertificatenum);
+    String selectNameByCertificatenum(String mCertificatenum);
+    String selectAddressByCertificatenum(String mCertificatenum);
+    String selectPhoneByCertificatenum(String mCertificatenum);
+    int selectScoreByCertificatenum(String mCertificatenum);
     Boolean selectMerchantLogin();
+    String selectLoginCertificatenum();
     int selectMerchantState(String mCertificatenum);
     void updateScore(Merchants merchants);
     void updateState(String mCertificatenum, int mState);

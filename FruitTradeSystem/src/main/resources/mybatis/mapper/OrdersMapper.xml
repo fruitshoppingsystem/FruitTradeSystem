@@ -32,17 +32,17 @@
     <select id="selectAllOrders" resultType="com.sys.pojo.Orders">
         select * from orders
     </select>
-    <select id="selectUserOrders" resultType="com.sys.pojo.Orders">
+    <select id="selectUserOrders" resultType="com.sys.pojo.Orders" parameterType="string">
         select * from orders where uEmail = #{uEmail}
     </select>
-    <select id="selectMerchantOrders" resultType="com.sys.pojo.Orders">
+    <select id="selectMerchantOrders" resultType="com.sys.pojo.Orders" parameterType="string">
         select * from orders where mCertificatenum = #{mCertificatenum}
     </select>
     <update id="updateState" parameterType="com.sys.pojo.Orders">
         update orders set oState = #{oState} where oId = #{oId}
     </update>
-    <insert id="insertTrackingnum" parameterType="integer">
-        insert into orders (oTrackingnum) values (#{oTrackingnum})
-    </insert>
+    <update id="updateTrackingnum">
+        update orders set oTrackingnum = #{oTrackingnum} where oId = #{oId}
+    </update>
 
 </mapper>

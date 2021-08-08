@@ -5,11 +5,11 @@ public class Merchants {
     private String mName;
     private String mPassword;
     private String mAddress;
-    private Integer mPhonenum;
+    private String mPhonenum;
     private Integer mScore;
-    private Short mState;
+    private Integer mState;
 
-    public Merchants(Integer mCertificatenum, String mName, String mPassword, String mAddress, Integer mPhonenum, Integer mScore, Short mState) {
+    public Merchants(Integer mCertificatenum, String mName, String mPassword, String mAddress, String mPhonenum, Integer mScore, Integer mState) {
         this.mCertificatenum = mCertificatenum;
         this.mName = mName;
         this.mPassword = mPassword;
@@ -64,11 +64,11 @@ public class Merchants {
         this.mAddress = mAddress;
     }
 
-    public Integer getmPhonenum() {
+    public String getmPhonenum() {
         return mPhonenum;
     }
 
-    public void setmPhonenum(Integer mPhonenum) {
+    public void setmPhonenum(String mPhonenum) {
         this.mPhonenum = mPhonenum;
     }
 
@@ -80,11 +80,11 @@ public class Merchants {
         this.mScore = mScore;
     }
 
-    public Short getmState() {
+    public Integer getmState() {
         return mState;
     }
 
-    public void setmState(Short mState) {
+    public void setmState(Integer mState) {
         this.mState = mState;
     }
 

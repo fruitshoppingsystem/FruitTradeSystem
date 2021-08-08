@@ -11,7 +11,7 @@
     <delete id="deleteMerchant" parameterType="String">
         delete from merchants where mCertificatenum = #{mCertificatenum}
     </delete>
-    <update id="updateMerchant" parameterType="com.sys.pojo.Users">
+    <update id="updateMerchant">
         update merchants
         <set>
             <if test="mName != null">
@@ -40,11 +40,26 @@
     <select id="selectPasswordByCertificatenum" parameterType="String" resultType="String">
         select mPassword from merchants where mCertificatenum = #{mCertificatenum}
     </select>
+    <select id="selectNameByCertificatenum" parameterType="String" resultType="String">
+        select mName from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectAddressByCertificatenum" parameterType="String" resultType="String">
+        select mAddress from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectPhoneByCertificatenum" parameterType="String" resultType="String">
+        select mPhonenum from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectScoreByCertificatenum" parameterType="String" resultType="int">
+        select mScore from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
     <select id="selectMerchantState" parameterType="String" resultType="int">
         select mState from merchants where mCertificatenum = #{mCertificatenum}
     </select>
     <select id="selectMerchantLogin" resultType="boolean">
         select count(*) from merchants where mState = 3
+    </select>
+    <select id="selectLoginCertificatenum" resultType="string">
+        select mCertificatenum from merchants where mState = 3
     </select>
     <update id="updateScore" parameterType="com.sys.pojo.Merchants">
         update merchants set mScore = #{mScore} where mCertificatenum = #{mCertificatenum}
