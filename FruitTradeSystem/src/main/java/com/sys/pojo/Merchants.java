@@ -1,7 +1,7 @@
 package com.sys.pojo;
 
 public class Merchants {
-    private Integer mCertificatenum;
+    private String mCertificatenum;
     private String mName;
     private String mPassword;
     private String mAddress;
@@ -9,7 +9,7 @@ public class Merchants {
     private Integer mScore;
     private Integer mState;
 
-    public Merchants(Integer mCertificatenum, String mName, String mPassword, String mAddress, String mPhonenum, Integer mScore, Integer mState) {
+    public Merchants(String mCertificatenum, String mName, String mPassword, String mAddress, String mPhonenum, Integer mScore, Integer mState) {
         this.mCertificatenum = mCertificatenum;
         this.mName = mName;
         this.mPassword = mPassword;
@@ -32,11 +32,11 @@ public class Merchants {
                 '}';
     }
 
-    public Integer getmCertificatenum() {
+    public String getmCertificatenum() {
         return mCertificatenum;
     }
 
-    public void setmCertificatenum(Integer mCertificatenum) {
+    public void setmCertificatenum(String mCertificatenum) {
         this.mCertificatenum = mCertificatenum;
     }
 

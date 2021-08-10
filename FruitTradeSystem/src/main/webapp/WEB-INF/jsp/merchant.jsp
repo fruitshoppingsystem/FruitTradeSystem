@@ -42,11 +42,11 @@
             <li><a id="showbox2">我的商品</a></li>
             <li><a id="showbox3">我的订单</a></li>
             <li><a ><button style="border-style: hidden; background:none" onclick="logout()">退出登录</button></a></li>
-            <li><a href="#">注销店铺</a></li>
+            <li><a ><button style="border-style: hidden; background:none" onclick="deleteMerchant()">注销店铺</button></a></li>
         </ul>
     </div>
     <div id="box1">
-        <h3>店铺信息</h3>
+        <h3>修改店铺信息</h3>
         <form id="merchantInfo">
             <label><input type="hidden" name="mCertificatenum" id="mCertificatenum" value="${mCertificatenum}"></label>
             <label>用户名：<input type="text" name="mName" id="mName" value="${mName}"></label>

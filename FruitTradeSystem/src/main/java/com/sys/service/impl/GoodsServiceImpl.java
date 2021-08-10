@@ -35,6 +35,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectAllNotVIPGoods() {
+        return goodsDao.selectAllNotVIPGoods();
+    }
+
+    @Override
+    public List<Goods> selectAllVIPGoods() {
+        return goodsDao.selectAllVIPGoods();
+    }
+
+    @Override
     public List<Goods> selectGoodsByName(String gName) {
         return goodsDao.selectGoodsByName(gName);
     }

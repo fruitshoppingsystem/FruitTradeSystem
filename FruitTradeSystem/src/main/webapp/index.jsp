@@ -11,6 +11,15 @@
     <title>跳转</title>
 </head>
 <body>
-<jsp:forward page="WEB-INF/jsp/index.jsp"/>
+<form id="form">
+
+</form>
 </body>
+<script type="text/javascript">
+    window.onload = function () {
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+</script>
 </html>

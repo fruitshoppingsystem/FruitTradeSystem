@@ -3,28 +3,36 @@ package com.sys.pojo;
 import java.sql.Timestamp;
 
 public class Comments {
+    private Integer cId;
     private String uEmail;
-    private Integer gId;
+    private String mCertificatenum;
     private Timestamp time;
     private String content;
     private Integer score;
+    private String uName;
+    private String mName;
 
-    public Comments(String uEmail, Integer gId, Timestamp time, String content, Integer score) {
+    public Comments(String uEmail, String mCertificatenum, Timestamp time, String content, Integer score, String uName, String mName) {
         this.uEmail = uEmail;
-        this.gId = gId;
+        this.mCertificatenum = mCertificatenum;
         this.time = time;
         this.content = content;
         this.score = score;
+        this.uName = uName;
+        this.mName = mName;
     }
 
     @Override
     public String toString() {
         return "Comments{" +
-                "uEmail='" + uEmail + '\'' +
-                ", gId=" + gId +
+                "cId=" + cId +
+                ", uEmail='" + uEmail + '\'' +
+                ", mCertificatenum='" + mCertificatenum + '\'' +
                 ", time=" + time +
                 ", content='" + content + '\'' +
                 ", score=" + score +
+                ", uName='" + uName + '\'' +
+                ", mName='" + mName + '\'' +
                 '}';
     }
 
@@ -34,14 +42,6 @@ public class Comments {
 
     public void setuEmail(String uEmail) {
         this.uEmail = uEmail;
-    }
-
-    public Integer getgId() {
-        return gId;
-    }
-
-    public void setgId(Integer gId) {
-        this.gId = gId;
     }
 
     public Timestamp getTime() {
@@ -66,6 +66,38 @@ public class Comments {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public String getmCertificatenum() {
+        return mCertificatenum;
+    }
+
+    public void setmCertificatenum(String mCertificatenum) {
+        this.mCertificatenum = mCertificatenum;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public Integer getcId() {
+        return cId;
+    }
+
+    public void setcId(Integer cId) {
+        this.cId = cId;
     }
 
     public Comments() {

@@ -38,7 +38,7 @@
     <select id="selectMerchantOrders" resultType="com.sys.pojo.Orders" parameterType="string">
         select * from orders where mCertificatenum = #{mCertificatenum}
     </select>
-    <update id="updateState" parameterType="com.sys.pojo.Orders">
+    <update id="updateState">
         update orders set oState = #{oState} where oId = #{oId}
     </update>
     <update id="updateTrackingnum">

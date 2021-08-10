@@ -34,8 +34,14 @@
     <select id="selectAllMerchants" resultType="com.sys.pojo.Merchants">
         select * from merchants
     </select>
+    <select id="selectAcceptMerchants" resultType="com.sys.pojo.Merchants">
+        select * from merchants where mState = 3 or mState = 4
+    </select>
     <select id="findMerchantByCertificatenum" parameterType="String" resultType="int">
         select count(*) from merchants where mCertificatenum = #{mCertificatenum}
+    </select>
+    <select id="selectMerchantByCertificatenum" parameterType="String" resultType="com.sys.pojo.Merchants">
+        select * from merchants where mCertificatenum = #{mCertificatenum}
     </select>
     <select id="selectPasswordByCertificatenum" parameterType="String" resultType="String">
         select mPassword from merchants where mCertificatenum = #{mCertificatenum}
@@ -54,12 +60,6 @@
     </select>
     <select id="selectMerchantState" parameterType="String" resultType="int">
         select mState from merchants where mCertificatenum = #{mCertificatenum}
-    </select>
-    <select id="selectMerchantLogin" resultType="boolean">
-        select count(*) from merchants where mState = 3
-    </select>
-    <select id="selectLoginCertificatenum" resultType="string">
-        select mCertificatenum from merchants where mState = 3
     </select>
     <update id="updateScore" parameterType="com.sys.pojo.Merchants">
         update merchants set mScore = #{mScore} where mCertificatenum = #{mCertificatenum}

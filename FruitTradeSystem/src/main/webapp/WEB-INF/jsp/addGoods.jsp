@@ -84,7 +84,7 @@
             success: function (data) {
                 if (data.type === "success") {
                     alert(data.msg);
-                    path = data.filepath + data.filename;
+                    path = data.filename;
                     addGood(path);
                 } else {
                     alert(data.msg);

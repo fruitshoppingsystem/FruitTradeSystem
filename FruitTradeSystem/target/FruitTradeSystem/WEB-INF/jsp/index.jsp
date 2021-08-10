@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,6 @@
     <script src="${pageContext.request.contextPath}/html/js/jquery-3.6.0.min.js"></script>
     <script src="${pageContext.request.contextPath}/html/js/bootstrap.js"></script>
     <script src="${pageContext.request.contextPath}/html/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        function x() {
-
-        }
-    </script>
 </head>
 <body style="margin: 50px">
 <div class="modal-content" style="background-color:ghostwhite">
@@ -50,40 +46,20 @@
         <br/>
         <table align="center">
             <tr>
+                <c:forEach items="${goods}" var="good" begin="0" end="3" step="1">
                 <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
+                    <img src="${pageContext.request.contextPath}/html/img/${good.gImage}" class="img" alt="${good.gName}"/>
+                    <a href="">${good.gName}&nbsp;$:${good.gPrice}</a>
                 </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
+                </c:forEach>
             </tr>
             <tr>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
+                <c:forEach items="${goods}" var="good" begin="4" end="7" step="1">
+                    <td>
+                        <img src="${pageContext.request.contextPath}/html/img/${good.gImage}" class="img" alt="${good.gName}"/>
+                        <a href="">${good.gName}&nbsp;$:${good.gPrice}</a>
+                    </td>
+                </c:forEach>
             </tr>
         </table>
         <br />
@@ -94,40 +70,20 @@
         <br/>
         <table align="center">
             <tr>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
+                <c:forEach items="${vipGoods}" var="vipGood" begin="0" end="3">
+                    <td>
+                        <img src="${pageContext.request.contextPath}/html/img/${vipGood.gImage}" class="img" alt="${vipGood.gName}"/>
+                        <a href="">${vipGood.gName}&nbsp;$:${vipGood.gPrice}</a>
+                    </td>
+                </c:forEach>
             </tr>
             <tr>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
-                <td>
-                    <img src="../../html/img/apple.jpg" class="img"/>
-                    <a href="">商品名称</a>
-                </td>
+                <c:forEach items="${vipGoods}" var="vipGood" begin="4" end="7">
+                    <td>
+                        <img src="${pageContext.request.contextPath}/html/img/${vipGood.gImage}" class="img" alt="${vipGood.gName}"/>
+                        <a href="">${vipGood.gName}&nbsp;$:${vipGood.gPrice}</a>
+                    </td>
+                </c:forEach>
             </tr>
         </table>
         <br />
@@ -138,20 +94,20 @@
         <br/>
         <table align="center">
             <tr>
-                <td>
-                    <a href="">店铺名称</a>
-                </td>
-                <td>
-                    <a href="">店铺名称</a>
-                </td>
+                <c:forEach items="${merchants}" var="merchant" begin="0" end="1">
+                    <td>
+                        <a href="">${merchant.mName}</a>
+                    </td>
+                    &nbsp;
+                </c:forEach>
             </tr>
             <tr>
-                <td>
-                    <a href="">店铺名称</a>
-                </td>
-                <td>
-                    <a href="">店铺名称</a>
-                </td>
+                <c:forEach items="${merchants}" var="merchant" begin="2" end="3">
+                    <td>
+                        <a href="">${merchant.mName}</a>
+                    </td>
+                    &nbsp;
+                </c:forEach>
             </tr>
         </table>
         <br />
@@ -161,4 +117,9 @@
     <br />
 </div>
 </body>
+<script type="text/javascript">
+    function x() {
+
+    }
+</script>
 </html>

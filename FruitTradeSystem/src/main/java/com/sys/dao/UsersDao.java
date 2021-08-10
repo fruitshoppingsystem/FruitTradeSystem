@@ -13,13 +13,13 @@ public interface UsersDao {
     void userRegister(@Param("uEmail")String uEmail, @Param("uName")String uName, @Param("uPassword")String uPassword);
     void insertUser(Users users);
     void deleteUser(String uEmail);
-    void updateUser(Users users);
+    void updateUser(@Param("uEmail")String uEmail, @Param("uName")String uName, @Param("uAddress")String uAddress, @Param("uPhonenum")String uPhonenum);
     void updateUserPassword(Users users);
     List<Users> selectAllUsers();
-    List<Users> selectUsersByEmail(String uEmail);
+    Users selectUsersByEmail(String uEmail);
     int findUserByEmail(String uEmail);
     String selectPasswordByEmail(String uEmail);
-    Boolean selectUserLogin();
+    Integer selectUserState(String uEmail);
     void updateVIP(Users users);
     void updateState(@Param("uEmail")String uEmail,@Param("uState") int uState);
 }
