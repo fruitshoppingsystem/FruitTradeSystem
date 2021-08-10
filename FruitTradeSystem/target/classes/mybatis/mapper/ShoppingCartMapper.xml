@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.dao.ShoppingCartDao">
+    <select id="selectByEmail" parameterType="string" resultType="com.sys.pojo.ShoppingCart">
+        select * from shoppingcart where uEmail = #{uEmail}
+    </select>
+    <delete id="deleteShoppingCart" parameterType="int">
+        delete from shoppingcart where sId = #{sId}
+    </delete>
+    <select id="selectTotalPrice" parameterType="string" resultType="float">
+        select sum(gPrice) from shoppingcart where uEmail = #{uEmail}
+    </select>
+</mapper>

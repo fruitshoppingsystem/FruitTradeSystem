@@ -83,7 +83,7 @@
                 success: function (data) {
                     if (data.type === "success") {
                         alert(data.msg);
-                        path = data.filepath + data.filename;
+                        path = data.filename;
                         updateGood(path);
                     } else {
                         alert(data.msg);

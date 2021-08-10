@@ -45,7 +45,9 @@ public class MerchantController {
                     String msg = "登录失败";
                     return false;
                 }
-            }else{
+            }else if (merchantsService.selectMerchantState(mCertificatenum) == 3){
+                return true;
+            }else {
                 String msg = "error";
                 return false;
             }

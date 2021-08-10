@@ -45,15 +45,44 @@ public class UserController {
     @ResponseBody
     public Boolean userLogin(String uEmail, String uPassword){
         if (usersService.findUserByEmail(uEmail) != 0){
-            String password = usersService.selectPasswordByEmail(uEmail);
-            if (uPassword.equals(password)){
-                usersService.updateState(uEmail, 1);
+            if (usersService.selectUserState(uEmail) == 1){
                 return true;
             }else {
-                return false;
+                String password = usersService.selectPasswordByEmail(uEmail);
+                if (uPassword.equals(password)){
+                    usersService.updateState(uEmail, 1);
+                    return true;
+                }else {
+                    return false;
+                }
             }
         }
         return false;
+    }
+
+    @RequestMapping("/userLogout")
+    @ResponseBody
+    public Boolean userLogout(String uEmail){
+        if (usersService.selectUserState(uEmail) == 1){
+            usersService.updateState(uEmail, 0);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public String updateUser(String uEmail, String uName, String uAddress, String uPhonenum){
+        usersService.updateUser(uEmail, uName, uAddress, uPhonenum);
+        return "success";
+    }
+
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public Boolean deleteUser(String uEmail){
+        usersService.deleteUser(uEmail);
+        return true;
     }
 
 }

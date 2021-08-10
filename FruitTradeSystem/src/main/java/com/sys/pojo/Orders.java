@@ -18,12 +18,10 @@ public class Orders {
     private String gSize;
     private Integer gVIP;
 
-    public Orders(Integer oId, String uEmail, String mCertificatenum, Integer gId, Integer oTrackingnum, String oState, String mName, String mPhonenum, String uName, String uPlace, String uPhonenum, String gName, Float gPrice, Integer gSum, String gSize, Integer gVIP) {
-        this.oId = oId;
+    public Orders(String uEmail, String mCertificatenum, Integer gId, String oState, String mName, String mPhonenum, String uName, String uPlace, String uPhonenum, String gName, Float gPrice, Integer gSum, String gSize, Integer gVIP) {
         this.uEmail = uEmail;
         this.mCertificatenum = mCertificatenum;
         this.gId = gId;
-        this.oTrackingnum = oTrackingnum;
         this.oState = oState;
         this.mName = mName;
         this.mPhonenum = mPhonenum;

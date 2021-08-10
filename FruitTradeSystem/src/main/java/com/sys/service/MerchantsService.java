@@ -12,14 +12,14 @@ public interface MerchantsService {
     void updateMerchant(String mCertificatenum, String mName, String mAddress, String mPhonenum);
     void updateMerchantPassword(Merchants merchants);
     List<Merchants> selectAllMerchants();
+    List<Merchants> selectAcceptMerchants();
     int findMerchantByCertificatenum(String mCertificatenum);
+    Merchants selectMerchantByCertificatenum(String mCertificatenum);
     String selectPasswordByCertificatenum(String mCertificatenum);
     String selectNameByCertificatenum(String mCertificatenum);
     String selectAddressByCertificatenum(String mCertificatenum);
     String selectPhoneByCertificatenum(String mCertificatenum);
     int selectScoreByCertificatenum(String mCertificatenum);
-    Boolean selectMerchantLogin();
-    String selectLoginCertificatenum();
     int selectMerchantState(String mCertificatenum);
     void updateScore(Merchants merchants);
     void updateState(String mCertificatenum, int mState);

@@ -13,6 +13,8 @@ public interface GoodsDao {
     void deleteGood(int gId);
     void updateGood(Goods goods);
     List<Goods> selectAllGoods();
+    List<Goods> selectAllNotVIPGoods();
+    List<Goods> selectAllVIPGoods();
     List<Goods> selectGoodsByName(String gName);
     List<Goods> selectGoodsByCertificatenum(String mCertificatenum);
     Goods selectGoodById(Integer gId);

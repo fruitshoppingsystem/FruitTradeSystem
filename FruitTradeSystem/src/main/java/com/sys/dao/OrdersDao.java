@@ -16,6 +16,6 @@ public interface OrdersDao {
     List<Orders> selectAllOrders();
     List<Orders> selectUserOrders(String uEmail);
     List<Orders> selectMerchantOrders(String mCertificatenum);
-    void updateState(Orders orders);
+    void updateState(@Param("oId")int oId, @Param("oState")String oState);
     void updateTrackingnum(@Param("oTrackingnum")int oTrackingnum, @Param("oId")int oId);
 }

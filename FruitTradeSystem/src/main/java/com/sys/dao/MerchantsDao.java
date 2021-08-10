@@ -17,14 +17,14 @@ public interface MerchantsDao {
     void updateMerchant(@Param("mCertificatenum")String mCertificatenum, @Param("mName")String mName, @Param("mAddress")String mAddress, @Param("mPhonenum")String mPhonenum);
     void updateMerchantPassword(Merchants merchants);
     List<Merchants> selectAllMerchants();
+    List<Merchants> selectAcceptMerchants();
     int findMerchantByCertificatenum(String mCertificatenum);
+    Merchants selectMerchantByCertificatenum(String mCertificatenum);
     String selectPasswordByCertificatenum(String mCertificatenum);
     String selectNameByCertificatenum(String mCertificatenum);
     String selectAddressByCertificatenum(String mCertificatenum);
     String selectPhoneByCertificatenum(String mCertificatenum);
     int selectScoreByCertificatenum(String mCertificatenum);
-    Boolean selectMerchantLogin();
-    String selectLoginCertificatenum();
     int selectMerchantState(String mCertificatenum);
     void updateScore(Merchants merchants);
     void updateState(@Param("mCertificatenum")String mCertificatenum, @Param("mState")int mState);

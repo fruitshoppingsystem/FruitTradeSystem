@@ -11,7 +11,7 @@
     <delete id="deleteUser" parameterType="String">
         delete from users where uEmail = #{uEmail}
     </delete>
-    <update id="updateUser" parameterType="com.sys.pojo.Users">
+    <update id="updateUser">
         update users
         <set>
             <if test="uName != null">
@@ -47,8 +47,8 @@
     <select id="selectPasswordByEmail" parameterType="String" resultType="String">
         select uPassword from users where uEmail = #{uEmail}
     </select>
-    <select id="selectUserLogin" resultType="boolean">
-        select count(*) from users where uState = 1
+    <select id="selectUserState" parameterType="string" resultType="Integer">
+        select uState from users where uEmail = #{uEmail}
     </select>
     <update id="updateVIP" parameterType="com.sys.pojo.Users">
         update users set uVIP = #{uVIP} where uEmail = #{uEmail}

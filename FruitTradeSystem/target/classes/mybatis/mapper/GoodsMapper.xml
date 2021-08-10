@@ -45,6 +45,12 @@
     <select id="selectAllGoods" resultType="com.sys.pojo.Goods">
         select * from goods
     </select>
+    <select id="selectAllNotVIPGoods" resultType="com.sys.pojo.Goods">
+        select * from goods where gVIP = 0
+    </select>
+    <select id="selectAllVIPGoods" resultType="com.sys.pojo.Goods">
+        select * from goods where gVIP = 1
+    </select>
     <select id="selectGoodsByName" resultType="com.sys.pojo.Goods">
         select * from goods where gName = #{gName}
     </select>

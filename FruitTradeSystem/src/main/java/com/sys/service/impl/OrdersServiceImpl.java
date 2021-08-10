@@ -45,8 +45,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public void updateState(Orders orders) {
-        ordersDao.updateState(orders);
+    public void updateState(int oId, String oState) {
+        ordersDao.updateState(oId, oState);
     }
 
     @Override

@@ -8,13 +8,13 @@ public interface UsersService {
     void userRegister(String uEmail, String uName, String uPassword);
     void insertUser(Users users);
     void deleteUser(String uEmail);
-    void updateUser(Users users);
+    void updateUser(String uEmail, String uName, String uAddress, String uPhonenum);
     void updateUserPassword(Users users);
     List<Users> selectAllUsers();
-    List<Users> selectUsersByEmail(String uEmail);
+    Users selectUsersByEmail(String uEmail);
     int findUserByEmail(String uEmail);
     String selectPasswordByEmail(String uEmail);
-    Boolean selectUserLogin();
+    Integer selectUserState(String uEmail);
     void updateVIP(Users users);
     void updateState(String uEmail, int uState);
 }

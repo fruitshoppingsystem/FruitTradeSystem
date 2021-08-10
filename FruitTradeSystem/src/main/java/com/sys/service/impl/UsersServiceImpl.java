@@ -31,8 +31,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void updateUser(Users users) {
-        usersDao.updateUser(users);
+    public void updateUser(String uEmail, String uName, String uAddress, String uPhonenum) {
+        usersDao.updateUser(uEmail, uName, uAddress, uPhonenum);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<Users> selectUsersByEmail(String uEmail) {
+    public Users selectUsersByEmail(String uEmail) {
         return usersDao.selectUsersByEmail(uEmail);
     }
 
@@ -61,8 +61,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Boolean selectUserLogin() {
-        return usersDao.selectUserLogin();
+    public Integer selectUserState(String uEmail) {
+        return usersDao.selectUserState(uEmail);
     }
 
     @Override

@@ -5,11 +5,11 @@ public class Users {
     private String uName;
     private String uPassword;
     private String uAddress;
-    private Integer uPhonenum;
+    private String uPhonenum;
     private Integer uVIP;
     private Integer uState;
 
-    public Users(String uEmail, String uName, String uPassword, String uAddress, Integer uPhonenum, Integer uVIP, Integer uState) {
+    public Users(String uEmail, String uName, String uPassword, String uAddress, String uPhonenum, Integer uVIP, Integer uState) {
         this.uEmail = uEmail;
         this.uName = uName;
         this.uPassword = uPassword;
@@ -64,11 +64,11 @@ public class Users {
         this.uAddress = uAddress;
     }
 
-    public Integer getuPhonenum() {
+    public String getuPhonenum() {
         return uPhonenum;
     }
 
-    public void setuPhonenum(Integer uPhonenum) {
+    public void setuPhonenum(String uPhonenum) {
         this.uPhonenum = uPhonenum;
     }
 

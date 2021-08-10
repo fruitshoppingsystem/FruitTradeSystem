@@ -42,11 +42,11 @@
             <li><a id="showbox2">我的商品</a></li>
             <li><a id="showbox3">我的订单</a></li>
             <li><a ><button style="border-style: hidden; background:none" onclick="logout()">退出登录</button></a></li>
-            <li><a href="#">注销店铺</a></li>
+            <li><a ><button style="border-style: hidden; background:none" onclick="deleteMerchant()">注销店铺</button></a></li>
         </ul>
     </div>
     <div id="box1">
-        <h3>店铺信息</h3>
+        <h3>修改店铺信息</h3>
         <form id="merchantInfo">
             <label><input type="hidden" name="mCertificatenum" id="mCertificatenum" value="${mCertificatenum}"></label>
             <label>用户名：<input type="text" name="mName" id="mName" value="${mName}"></label>
@@ -81,7 +81,7 @@
                 <td>${good.gSum}</td>
                 <td>
                     <input type="button" value="修改" onclick="updateGood(${good.gId})"/>
-                    <input type="button" value="删除" />
+                    <input type="button" value="删除" onclick="deleteGood(${good.gId})"/>
                 </td>
             </tr>
             </c:forEach>
@@ -94,26 +94,34 @@
                 <td>订单号</td>
                 <td>商品名称</td>
                 <td>商品价格</td>
+                <td>商品数量</td>
+                <td>商品规格</td>
+                <td>是否为VIP商品</td>
                 <td>用户名称</td>
                 <td>收货地址</td>
                 <td>用户电话</td>
-                <td>快递 单号</td>
+                <td>快递单号</td>
                 <td>状态</td>
                 <td>操作</td>
             </tr>
+            <c:forEach items="${orders}" var="order">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>${order.oId}</td>
+                    <td>${order.gName}</td>
+                    <td>${order.gPrice}</td>
+                    <td>${order.gSum}</td>
+                    <td>${order.gSize}</td>
+                    <td>${order.gVIP}</td>
+                    <td>${order.uName}</td>
+                    <td>${order.uPlace}</td>
+                    <td>${order.uPhonenum}</td>
+                    <td>${order.oTrackingnum}</td>
+                    <td>${order.oState}</td>
                     <td>
-                        <input type="button" value="上传快递单号" />
+                        <input type="button" value="上传快递单号" onclick="uploadTrackingnum(${order.oId})"/>
                     </td>
                 </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
@@ -186,6 +194,45 @@
         document.getElementById("form").action="${pageContext.request.contextPath}/page/updateGoodsPage?gId="+gId;
         document.getElementById("form").method="post";
         document.getElementById("form").submit();
+    }
+
+    function deleteGood(gId) {
+        document.getElementById("form").action="${pageContext.request.contextPath}/good/deleteGood?gId="+gId;
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+
+    function uploadTrackingnum(oId) {
+        var oTrackingnum = prompt("请输入快递单号");
+        if (oTrackingnum !== ''){
+            document.getElementById("form").action="${pageContext.request.contextPath}/order/uploadTrackingnum?oTrackingnum="+oTrackingnum+"&oId="+oId;
+            document.getElementById("form").method="post";
+            document.getElementById("form").submit();
+        }
+    }
+
+    function deleteMerchant() {
+        var mCertificate = "${mCertificatenum}";
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/deleteMerchant",
+            datatype : "String",
+            type : "post",
+            data:{
+                mCertificatenum: mCertificate
+            },success:function (res) {
+                if (res === true){
+                    alert("注销成功");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
+                }else{
+                    alert("注销失败");
+                }
+            },error:function () {
+                alert("失败");
+            }
+        });
     }
 </script>
 </html>

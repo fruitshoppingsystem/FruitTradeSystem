@@ -1,8 +1,6 @@
 package com.sys.controller;
 
-import com.sys.pojo.Goods;
-import com.sys.pojo.Orders;
-import com.sys.pojo.Users;
+import com.sys.pojo.*;
 import com.sys.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,21 +22,23 @@ public class PageController {
     private GoodsService goodsService;
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private ShoppingCartService shoppingCartService;
     @RequestMapping("/indexPage")
-    public String firstPage(){
+    public String firstPage(Model model){
+        List<Goods> goods = goodsService.selectAllNotVIPGoods();
+        System.out.println(goods.size());
+        model.addAttribute("goods",goods);
+        List<Goods> vipGoods = goodsService.selectAllVIPGoods();
+        System.out.println(vipGoods.size());
+        model.addAttribute("vipGoods", vipGoods);
+        List<Merchants> merchants = merchantsService.selectAcceptMerchants();
+        model.addAttribute("merchants", merchants);
         return "index";
     }
     @RequestMapping("/loginPage")
-    public String loginPage(Model model){
-        if (usersService.selectUserLogin()){
-            return userPage();
-        }else if (merchantsService.selectMerchantLogin()){
-            return merchantPage(merchantsService.selectLoginCertificatenum(), model);
-        }else if (adminsService.selectAdminLogin()){
-            return adminPage();
-        }else {
-            return "login";
-        }
+    public String loginPage(){
+        return "login";
     }
     @RequestMapping("/userRegisterPage")
     public String userRegisterPage(){
@@ -50,7 +50,16 @@ public class PageController {
     }
 
     @RequestMapping("/userPage")
-    public String userPage(){
+    public String userPage(String uEmail, Model model){
+        model.addAttribute("uEmail", uEmail);
+        Users user = usersService.selectUsersByEmail(uEmail);
+        model.addAttribute("user", user);
+        List<Orders> userOrders = ordersService.selectUserOrders(uEmail);
+        model.addAttribute("orders", userOrders);
+        List<ShoppingCart> userShoppingCart = shoppingCartService.selectByEmail(uEmail);
+        model.addAttribute("shoppingCart", userShoppingCart);
+        Float totalPrice = shoppingCartService.selectTotalPrice(uEmail);
+        model.addAttribute("totalPrice", totalPrice);
         return "user";
     }
     @RequestMapping("/merchantPage")
@@ -90,5 +99,12 @@ public class PageController {
         Goods good = goodsService.selectGoodById(gId);
         model.addAttribute("good", good);
         return "updateGoods";
+    }
+
+    @RequestMapping("/commentPage")
+    public String commentPage(String uEmail,String mCertificatenum, Model model){
+        model.addAttribute("uEmail", uEmail);
+        model.addAttribute("mCertificatenum", mCertificatenum);
+        return "comment";
     }
 }
