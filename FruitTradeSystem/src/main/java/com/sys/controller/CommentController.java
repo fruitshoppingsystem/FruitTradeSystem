@@ -33,4 +33,11 @@ public class CommentController {
         merchantsService.updateScore(mCertificatenum, averageScore);
         return true;
     }
+
+    @RequestMapping("/deleteComment")
+    @ResponseBody
+    public String deleteComment(Integer cId){
+        commentsService.deleteComment(cId);
+        return "success";
+    }
 }

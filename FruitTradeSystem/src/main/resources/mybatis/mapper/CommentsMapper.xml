@@ -5,8 +5,8 @@
     <insert id="insertComment" parameterType="com.sys.pojo.Comments">
         insert into comments(uEmail,mCertificatenum,gId,time,content,score,uName,mName) values (#{uEmail},#{mCertificatenum},#{gId},#{time},#{content},#{score},#{uName},#{mName})
     </insert>
-    <delete id="deleteComment" parameterType="com.sys.pojo.Comments">
-        delete from comments where uEmail = #{uEmail} and gId = #{gId} and time = #{time}
+    <delete id="deleteComment" parameterType="integer">
+        delete from comments where cId = #{cId}
     </delete>
     <select id="selectAllComments" resultType="com.sys.pojo.Comments">
         select * from comments

@@ -20,8 +20,8 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
-    public void deleteComment(Comments comments) {
-        commentsDao.deleteComment(comments);
+    public void deleteComment(Integer cId) {
+        commentsDao.deleteComment(cId);
     }
 
     @Override

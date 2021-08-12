@@ -1,0 +1,11 @@
+.img{
+    height: 100px;
+    width: 100px;
+}
+#searchBox{
+	width: 1200px;
+	margin: auto;
+}
+#search{
+    align-items: center;
+}

@@ -186,7 +186,7 @@
         var gVIP = ${good.gVIP};
         var mName = "${merchant.mName}";
         var mPhonenum = "${merchant.mPhonenum}";
-        if (uEmail == null){
+        if (uEmail === ""){
             alert("请登录用户账号");
         }else if (gVIP === 1 && uVIP !== 1){
             alert("请开通VIP");

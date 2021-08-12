@@ -33,15 +33,16 @@
         <div class="col-md-6 col-md-offset-3" >
             <div class="input-group input-group-md" >
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" value="请输入商品名称" aria-describedby="sizing-addon1">
+                <input id="searchText" type="text" class="form-control" placeholder="请输入商品名称或商家名称" aria-describedby="sizing-addon1">
                 <div class="input-group-btn">
-                    <button class="btn btn-default">查询</button>
+                    <button class="btn btn-default" id="search" onclick="search()">查询</button>
                 </div>
             </div>
         </div>
     </div>
     <hr />
-    <div class="modal-content" style="background-image: url(../../html/img/background.jpeg);" id="box">
+    <div id="box">
+    <div class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
         <h3 align="center">商品区</h3>
         <br/>
         <table align="center" class="table-hover table-condensed">
@@ -65,7 +66,7 @@
         <br />
     </div>
     <hr />
-    <div id="box" class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
+    <div class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
         <h3 align="center">VIP商品区</h3>
         <br/>
         <table align="center" class="table-hover table-condensed">
@@ -89,7 +90,7 @@
         <br />
     </div>
     <hr />
-    <div id="box" class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
+    <div class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
         <h3 align="center">店铺区</h3>
         <br/>
         <table align="center" class="table-hover table-condensed">
@@ -112,6 +113,7 @@
         </table>
         <br />
     </div>
+    </div>
     <br />
     <br />
     <br />
@@ -132,6 +134,27 @@
         document.getElementById("form").action="${pageContext.request.contextPath}/page/shopPage?mCertificatenum="+mCertificatenum+"&uEmail="+uEmail;
         document.getElementById("form").method="post";
         document.getElementById("form").submit();
+    }
+
+    function search(){
+        var uEmail = "${uEmail}";
+        var inputText = document.getElementById("searchText").value;
+        if(inputText!==""){//检测键盘输入的内容是否为空，为空就不发出请求
+            document.getElementById("form").action="${pageContext.request.contextPath}/search/getData?inputText="+inputText+"&uEmail="+uEmail;
+            document.getElementById("form").method="post";
+            document.getElementById("form").submit();
+            <%--$.ajax({--%>
+            <%--    type: 'POST',--%>
+            <%--    url: '${pageContext.request.contextPath}/search/getData',--%>
+            <%--    cache:false,//不从浏览器缓存中加载请求信息--%>
+            <%--    data: {--%>
+            <%--        'data' : "%" + inputText + "%",//发送的数据--%>
+            <%--        uEmail:uEmail--%>
+            <%--    }--%>
+            <%--});--%>
+        }else{
+            alert("请输入关键词");
+        }
     }
 </script>
 </html>

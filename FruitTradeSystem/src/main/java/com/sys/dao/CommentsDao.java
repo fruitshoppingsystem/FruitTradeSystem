@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CommentsDao {
     void insertComment(Comments comments);
-    void deleteComment(Comments comments);
+    void deleteComment(Integer cId);
     List<Comments> selectAllComments();
     List<Comments> selectCommentsById(Integer gId);
     Integer selectAverageScore(String mCertificatenum);
