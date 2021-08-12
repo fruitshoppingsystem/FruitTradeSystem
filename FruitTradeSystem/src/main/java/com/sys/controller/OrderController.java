@@ -101,4 +101,11 @@ public class OrderController {
         ordersService.updateState(oId, "已评论");
         return true;
     }
+
+    @RequestMapping("/deleteOrder")
+    @ResponseBody
+    public String deleteOrder(Integer oId){
+        ordersService.deleteOrder(oId);
+        return "success";
+    }
 }

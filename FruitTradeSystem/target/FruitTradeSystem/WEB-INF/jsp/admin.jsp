@@ -101,7 +101,7 @@
                 <td>${user.uVIP}</td>
                 <td>${user.uState}</td>
                 <td>
-                    <input type="button" value="修改" />
+                    <input type="button" value="重置" onclick="resetUser('${user.uEmail}')"/>
                 </td>
             </tr>
             </c:forEach>
@@ -128,7 +128,7 @@
                 <td>${acceptMerchant.mScore}</td>
                 <td>${acceptMerchant.mState}</td>
                 <td>
-                    <input type="button" value="修改" />
+                    <input type="button" value="重置" onclick="resetMerchant('${acceptMerchant.mCertificatenum}')"/>
                 </td>
             </tr>
             </c:forEach>
@@ -175,8 +175,7 @@
                 <td>${order.oTrackingnum}</td>
                 <td>${order.oState}</td>
                 <td>
-                    <input type="button" value="修改" />
-                    <input type="button" value="删除" />
+                    <input type="button" value="删除" onclick="deleteOrder(${order.oId})"/>
                 </td>
             </tr>
             </c:forEach>
@@ -238,7 +237,7 @@
                 <td>${comment.score}</td>
                 <td>${comment.content}</td>
                 <td>
-                    <input type="button" value="删除" />
+                    <input type="button" value="删除" onclick="deleteComment(${comment.cId})"/>
                 </td>
             </tr>
             </c:forEach>
@@ -257,8 +256,8 @@
                 <td>${notAcceptMerchant.mName}</td>
                 <td>${notAcceptMerchant.mCertificatenum}</td>
                 <td>
-                    <input type="button" value="通过" />
-                    <input type="button" value="不通过" />
+                    <input type="button" value="通过" onclick="acceptMerchant('${notAcceptMerchant.mCertificatenum}')"/>
+                    <input type="button" value="不通过" onclick="notAcceptMerchant('${notAcceptMerchant.mCertificatenum}')"/>
                 </td>
             </tr>
             </c:forEach>
@@ -298,6 +297,146 @@
         document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
         document.getElementById("form").method="post";
         document.getElementById("form").submit();
+    }
+
+    function resetUser(uEmail) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/user/resetUser",
+            datatype : "String",
+            type : "post",
+            data:{
+                uEmail:uEmail
+            },success:function () {
+                alert("重置成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("重置失败");
+            }
+        });
+    }
+
+    function resetMerchant(mCertificatenum) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/resetMerchant",
+            datatype : "String",
+            type : "post",
+            data:{
+                mCertificatenum:mCertificatenum
+            },success:function () {
+                alert("重置成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("重置失败");
+            }
+        });
+    }
+
+    function deleteOrder(oId) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/order/deleteOrder",
+            datatype : "String",
+            type : "post",
+            data:{
+                oId:oId
+            },success:function () {
+                alert("删除成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("删除失败");
+            }
+        });
+    }
+    
+    function deleteGood(gId) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/good/deleteGood",
+            datatype : "String",
+            type : "post",
+            data:{
+                gId:gId
+            },success:function () {
+                alert("删除成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("删除失败");
+            }
+        });
+    }
+
+    function deleteComment(cId) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/comment/deleteComment",
+            datatype : "String",
+            type : "post",
+            data:{
+                cId:cId
+            },success:function () {
+                alert("删除成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("删除失败");
+            }
+        });
+    }
+
+    function acceptMerchant(mCertificatenum) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/accept",
+            datatype : "String",
+            type : "post",
+            data:{
+                mCertificatenum:mCertificatenum
+            },success:function () {
+                alert("审核成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("审核失败");
+            }
+        });
+    }
+
+    function notAcceptMerchant(mCertificatenum) {
+        var aId = ${aId};
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/merchant/notAccept",
+            datatype : "String",
+            type : "post",
+            data:{
+                mCertificatenum:mCertificatenum
+            },success:function () {
+                alert("审核成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("审核失败");
+            }
+        });
     }
 </script>
 </html>

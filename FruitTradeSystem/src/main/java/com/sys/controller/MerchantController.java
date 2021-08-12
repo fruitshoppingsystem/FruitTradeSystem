@@ -1,6 +1,7 @@
 package com.sys.controller;
 
 import com.sys.pojo.Merchants;
+import com.sys.pojo.Users;
 import com.sys.service.MerchantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,6 @@ public class MerchantController {
         if (merchantsService.findMerchantByCertificatenum(mCertificatenum) != 0){
             if (merchantsService.selectMerchantState(mCertificatenum) == 0){
                 String msg = "未审核";
-
                 return false;
             }else if (merchantsService.selectMerchantState(mCertificatenum) == 1){
                 String msg = "审核未通过";
@@ -76,8 +76,29 @@ public class MerchantController {
 
     @RequestMapping("/deleteMerchant")
     @ResponseBody
-    public Boolean deleteMerchant(String mCertificatenum){
+    public String deleteMerchant(String mCertificatenum){
         merchantsService.deleteMerchant(mCertificatenum);
-        return true;
+        return "success";
+    }
+
+    @RequestMapping("/resetMerchant")
+    @ResponseBody
+    public String resetMerchant(String mCertificatenum){
+        merchantsService.updateMerchant(mCertificatenum, "", "", "");
+        return "success";
+    }
+
+    @RequestMapping("/accept")
+    @ResponseBody
+    public String accept(String mCertificatenum){
+        merchantsService.updateState(mCertificatenum, 2);
+        return "success";
+    }
+
+    @RequestMapping("/notAccept")
+    @ResponseBody
+    public String notAccept(String mCertificatenum){
+        merchantsService.updateState(mCertificatenum, 1);
+        return "success";
     }
 }

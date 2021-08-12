@@ -57,6 +57,11 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
+    public List<Merchants> selectMerchantsByName(String mName) {
+        return merchantsDao.selectMerchantsByName(mName);
+    }
+
+    @Override
     public int findMerchantByCertificatenum(String mCertificatenum) {
         return merchantsDao.findMerchantByCertificatenum(mCertificatenum);
     }

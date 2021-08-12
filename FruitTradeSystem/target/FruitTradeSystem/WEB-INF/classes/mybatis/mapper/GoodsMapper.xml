@@ -57,8 +57,11 @@
     <select id="selectMerchantVIPGoods" resultType="com.sys.pojo.Goods">
         select * from goods where gVIP = 1 and mCertificatenum = #{mCertificatenum}
     </select>
-    <select id="selectGoodsByName" resultType="com.sys.pojo.Goods">
-        select * from goods where gName = #{gName}
+    <select id="selectGoodsByName" resultType="com.sys.pojo.Goods" parameterType="string">
+        select * from goods where gName like #{gName} and gVIP = 0
+    </select>
+    <select id="selectVIPGoodsByName" resultType="com.sys.pojo.Goods" parameterType="string">
+        select * from goods where gName like #{gName} and gVIP = 1
     </select>
     <select id="selectGoodsByCertificatenum" resultType="com.sys.pojo.Goods">
         select * from goods where mCertificatenum = #{mCertificatenum}

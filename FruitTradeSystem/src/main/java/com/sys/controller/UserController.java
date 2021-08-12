@@ -1,5 +1,6 @@
 package com.sys.controller;
 
+import com.sys.pojo.Users;
 import com.sys.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -90,6 +93,13 @@ public class UserController {
     public Boolean vip(String uEmail){
         usersService.updateVIP(uEmail, 1);
         return true;
+    }
+
+    @RequestMapping("/resetUser")
+    @ResponseBody
+    public String resetUser(String uEmail){
+        usersService.updateUser(uEmail, "", "", "");
+        return "success";
     }
 
 }

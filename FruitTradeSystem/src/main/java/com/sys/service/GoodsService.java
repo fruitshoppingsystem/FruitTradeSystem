@@ -15,6 +15,7 @@ public interface GoodsService {
     List<Goods> selectMerchantGoods(String mCertificatenum);
     List<Goods> selectMerchantVIPGoods(String mCertificatenum);
     List<Goods> selectGoodsByName(String gName);
+    List<Goods> selectVIPGoodsByName(String gName);
     List<Goods> selectGoodsByCertificatenum(String mCertificatenum);
     Goods selectGoodById(Integer gId);
     void updateGoodSum(Integer gId, Integer gSum);

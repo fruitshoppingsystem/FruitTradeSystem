@@ -60,6 +60,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectVIPGoodsByName(String gName) {
+        return goodsDao.selectVIPGoodsByName(gName);
+    }
+
+    @Override
     public List<Goods> selectGoodsByCertificatenum(String mCertificatenum) {
         return goodsDao.selectGoodsByCertificatenum(mCertificatenum);
     }

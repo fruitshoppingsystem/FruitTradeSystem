@@ -19,6 +19,7 @@ public interface MerchantsDao {
     List<Merchants> selectAllMerchants();
     List<Merchants> selectNotAcceptMerchants();
     List<Merchants> selectAcceptMerchants();
+    List<Merchants> selectMerchantsByName(String mName);
     int findMerchantByCertificatenum(String mCertificatenum);
     Merchants selectMerchantByCertificatenum(String mCertificatenum);
     String selectPasswordByCertificatenum(String mCertificatenum);
