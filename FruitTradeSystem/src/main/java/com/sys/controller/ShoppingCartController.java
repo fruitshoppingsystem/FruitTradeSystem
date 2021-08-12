@@ -1,5 +1,6 @@
 package com.sys.controller;
 
+import com.sys.pojo.ShoppingCart;
 import com.sys.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,14 @@ public class ShoppingCartController {
     @ResponseBody
     public Boolean deleteShoppingCart(Integer sId){
         shoppingCartService.deleteShoppingCart(sId);
+        return true;
+    }
+
+    @RequestMapping("/addShoppingCart")
+    @ResponseBody
+    public Boolean addShoppingCart(String uEmail, String mCertificatenum, Integer gId, Integer sSum, String gName, Float gPrice, String gSize, Integer gVIP, String mName, String mPhonenum){
+        ShoppingCart shoppingCart = new ShoppingCart(gId, uEmail, mCertificatenum, sSum, gName, gPrice, gSize, gVIP, mName, mPhonenum);
+        shoppingCartService.addShoppingCart(shoppingCart);
         return true;
     }
 }

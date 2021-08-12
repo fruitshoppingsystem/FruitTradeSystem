@@ -28,4 +28,14 @@ public class CommentsServiceImpl implements CommentsService {
     public List<Comments> selectAllComments() {
         return commentsDao.selectAllComments();
     }
+
+    @Override
+    public List<Comments> selectCommentsById(Integer gId) {
+        return commentsDao.selectCommentsById(gId);
+    }
+
+    @Override
+    public Integer selectAverageScore(String mCertificatenum) {
+        return commentsDao.selectAverageScore(mCertificatenum);
+    }
 }

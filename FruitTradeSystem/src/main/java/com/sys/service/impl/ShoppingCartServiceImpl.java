@@ -28,4 +28,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Float selectTotalPrice(String uEmail) {
         return shoppingCartDao.selectTotalPrice(uEmail);
     }
+
+    @Override
+    public Float selectVIPTotalPrice(String uEmail) {
+        return shoppingCartDao.selectVIPTotalPrice(uEmail);
+    }
+
+    @Override
+    public void addShoppingCart(ShoppingCart shoppingCart) {
+        shoppingCartDao.addShoppingCart(shoppingCart);
+    }
 }

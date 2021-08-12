@@ -18,7 +18,7 @@
         <form id="comment">
             <label>分数：
                 <select id="score">
-                    <option value="" selected="selected">--请选择--</option>
+                    <option value="-1" selected="selected">--请选择--</option>
                     <option value="0">0分</option>
                     <option value="1">1分</option>
                     <option value="2">2分</option>
@@ -27,7 +27,7 @@
                     <option value="5">5分</option>
                 </select>
             </label>
-
+            <br>
             <label>评论内容：
                 <textarea id="content" rows="3"></textarea>
             </label>
@@ -45,6 +45,22 @@
 </form>
 </body>
 <script type="text/javascript">
+    Date.prototype.Format = function (fmt) { // author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, // 月份
+            "d+": this.getDate(), // 日
+            "h+": this.getHours(), // 小时
+            "m+": this.getMinutes(), // 分
+            "s+": this.getSeconds(), // 秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+            "S": this.getMilliseconds() // 毫秒
+        };
+        if (/(y+)/.test(fmt))
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    };
     function goUserPage() {
         var uEmail = "${uEmail}";
         document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
@@ -53,12 +69,51 @@
     }
 
     function comment() {
-        var uEmail = ${uEmail};
-        var mCertificatenum = ${mCertificatenum};
-        var score = $("#score option:selected");
+        var uEmail = "${uEmail}";
+        var mCertificatenum = "${mCertificatenum}";
+        var gId = ${gId};
+        var oId = ${oId};
+        var score = $("#score option:selected").val();
         var content = $("#content").val();
-        var time = new Date().getTimezoneOffset();
-        alert(time);
+        var time = new Date().Format("yyyy-MM-dd hh:mm:ss");
+        if (score < 0){
+            alert("请选择分数");
+        }else if (content.length > 1000){
+            alert("评论内容不能超过1000字");
+        }else {
+            $.ajax({
+                async:false,
+                url : "${pageContext.request.contextPath}/comment/addComment",
+                datatype : "String",
+                type : "post",
+                data:{
+                    uEmail: uEmail, mCertificatenum: mCertificatenum, gId:gId, score:score, content:content, time:time
+                },success:function (res) {
+                    if (res === true){
+                        alert("评论成功");
+                        $.ajax({
+                            url: "${pageContext.request.contextPath}/order/comment",
+                            type: "post",
+                            datatype: "String",
+                            data: {oId:oId},
+                            success: function (res) {
+                                if (res === true) {
+                                    document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+                                    document.getElementById("form").method="post";
+                                    document.getElementById("form").submit();
+                                }
+                            }, error: function () {
+                                alert("失败");
+                            }
+                        });
+                    }else{
+                        alert("评论失败");
+                    }
+                },error:function () {
+                    alert("失败");
+                }
+            });
+        }
     }
 </script>
 </html>

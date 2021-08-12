@@ -34,8 +34,11 @@
     <select id="selectAllMerchants" resultType="com.sys.pojo.Merchants">
         select * from merchants
     </select>
+    <select id="selectNotAcceptMerchants" resultType="com.sys.pojo.Merchants">
+        select * from merchants where mState = 0
+    </select>
     <select id="selectAcceptMerchants" resultType="com.sys.pojo.Merchants">
-        select * from merchants where mState = 3 or mState = 4
+        select * from merchants where mState = 2 or mState = 3
     </select>
     <select id="findMerchantByCertificatenum" parameterType="String" resultType="int">
         select count(*) from merchants where mCertificatenum = #{mCertificatenum}

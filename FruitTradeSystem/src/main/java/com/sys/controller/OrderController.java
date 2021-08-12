@@ -11,6 +11,7 @@ import com.sys.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,12 +29,15 @@ public class OrderController {
     private GoodsService goodsService;
 
     @RequestMapping("/uploadTrackingnum")
-    public void uploadTrackingnum(int oTrackingnum, int oId){
+    @ResponseBody
+    public String uploadTrackingnum(int oTrackingnum, int oId){
         ordersService.updateTrackingnum(oTrackingnum, oId);
         ordersService.updateState(oId, "已发货");
+        return "success";
     }
 
     @RequestMapping("/addOrder")
+    @ResponseBody
     public Map<String, String> addOrder(String uEmail, String mCertificatenum, Integer gId, Integer sSum){
         Map<String, String> ret = new HashMap<String, String>();
         Users user = usersService.selectUsersByEmail(uEmail);
@@ -51,24 +55,50 @@ public class OrderController {
         String gSize = good.getgSize();
         Integer gVIP = good.getgVIP();
         String oState = "已付款";
+        Orders order = new Orders();
         if (sSum > gSum){
             ret.put("type", "error");
             ret.put("msg", "库存不足");
-            return ret;
         }else {
+            order.setuEmail(uEmail);
+            order.setmCertificatenum(mCertificatenum);
+            order.setgId(gId);
+            order.setoState(oState);
+            order.setmName(mName);
+            order.setmPhonenum(mPhonenum);
+            order.setuName(uName);
+            order.setuPlace(uPlace);
+            order.setuPhonenum(uPhonenum);
+            order.setgName(gName);
             if (uVIP == 1){
-                Orders order = new Orders(uEmail, mCertificatenum, gId, oState, mName, mPhonenum, uName, uPlace, uPhonenum, gName, Float.parseFloat(String.valueOf(gPrice*0.7)), sSum , gSize, gVIP);
-                ordersService.insertOrder(order);
-                ret.put("type", "success");
-                ret.put("msg", "生成订单成功");
-                return ret;
+                float price = (float) (gPrice*0.7);
+                order.setgPrice(price);
             }else {
-                Orders order = new Orders(uEmail, mCertificatenum, gId, oState, mName, mPhonenum, uName, uPlace, uPhonenum, gName, gPrice, sSum , gSize, gVIP);
-                ordersService.insertOrder(order);
-                ret.put("type", "success");
-                ret.put("msg", "生成订单成功");
-                return ret;
+                float price = gPrice;
+                order.setgPrice(price);
             }
+            order.setgSum(sSum);
+            order.setgSize(gSize);
+            order.setgVIP(gVIP);
+            ordersService.insertOrder(order);
+            ret.put("type", "success");
+            ret.put("msg", "生成订单成功");
+            goodsService.updateGoodSum(gId, gSum - sSum);
         }
+        return ret;
+    }
+
+    @RequestMapping("/checkGood")
+    @ResponseBody
+    public Boolean checkGood(Integer oId){
+        ordersService.updateState(oId, "已收货");
+        return true;
+    }
+
+    @RequestMapping("/comment")
+    @ResponseBody
+    public Boolean comment(Integer oId){
+        ordersService.updateState(oId, "已评论");
+        return true;
     }
 }

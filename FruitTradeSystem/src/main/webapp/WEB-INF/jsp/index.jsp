@@ -44,12 +44,12 @@
     <div class="modal-content" style="background-image: url(../../html/img/background.jpeg);" id="box">
         <h3 align="center">商品区</h3>
         <br/>
-        <table align="center">
+        <table align="center" class="table-hover table-condensed">
             <tr>
                 <c:forEach items="${goods}" var="good" begin="0" end="3" step="1">
                 <td>
                     <img src="${pageContext.request.contextPath}/html/img/${good.gImage}" class="img" alt="${good.gName}"/>
-                    <a href="">${good.gName}&nbsp;$:${good.gPrice}</a>
+                    <a onclick="goGoodPage(${good.gId})">${good.gName}&nbsp;￥:${good.gPrice}</a>
                 </td>
                 </c:forEach>
             </tr>
@@ -57,7 +57,7 @@
                 <c:forEach items="${goods}" var="good" begin="4" end="7" step="1">
                     <td>
                         <img src="${pageContext.request.contextPath}/html/img/${good.gImage}" class="img" alt="${good.gName}"/>
-                        <a href="">${good.gName}&nbsp;$:${good.gPrice}</a>
+                        <a onclick="goGoodPage(${good.gId})">${good.gName}&nbsp;￥:${good.gPrice}</a>
                     </td>
                 </c:forEach>
             </tr>
@@ -68,12 +68,12 @@
     <div id="box" class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
         <h3 align="center">VIP商品区</h3>
         <br/>
-        <table align="center">
+        <table align="center" class="table-hover table-condensed">
             <tr>
                 <c:forEach items="${vipGoods}" var="vipGood" begin="0" end="3">
                     <td>
                         <img src="${pageContext.request.contextPath}/html/img/${vipGood.gImage}" class="img" alt="${vipGood.gName}"/>
-                        <a href="">${vipGood.gName}&nbsp;$:${vipGood.gPrice}</a>
+                        <a onclick="goGoodPage(${vipGood.gId})">${vipGood.gName}&nbsp;￥:${vipGood.gPrice}</a>
                     </td>
                 </c:forEach>
             </tr>
@@ -81,7 +81,7 @@
                 <c:forEach items="${vipGoods}" var="vipGood" begin="4" end="7">
                     <td>
                         <img src="${pageContext.request.contextPath}/html/img/${vipGood.gImage}" class="img" alt="${vipGood.gName}"/>
-                        <a href="">${vipGood.gName}&nbsp;$:${vipGood.gPrice}</a>
+                        <a onclick="goGoodPage(${vipGood.gId})">${vipGood.gName}&nbsp;￥:${vipGood.gPrice}</a>
                     </td>
                 </c:forEach>
             </tr>
@@ -92,11 +92,11 @@
     <div id="box" class="modal-content" style="background-image: url(../../html/img/background.jpeg);">
         <h3 align="center">店铺区</h3>
         <br/>
-        <table align="center">
+        <table align="center" class="table-hover table-condensed">
             <tr>
                 <c:forEach items="${merchants}" var="merchant" begin="0" end="1">
                     <td>
-                        <a href="">${merchant.mName}</a>
+                        <a onclick="goShopPage('${merchant.mCertificatenum}')">${merchant.mName}</a>
                     </td>
                     &nbsp;
                 </c:forEach>
@@ -104,7 +104,7 @@
             <tr>
                 <c:forEach items="${merchants}" var="merchant" begin="2" end="3">
                     <td>
-                        <a href="">${merchant.mName}</a>
+                        <a onclick="goShopPage('${merchant.mCertificatenum}')">${merchant.mName}</a>
                     </td>
                     &nbsp;
                 </c:forEach>
@@ -116,10 +116,22 @@
     <br />
     <br />
 </div>
+<form id="form">
+
+</form>
 </body>
 <script type="text/javascript">
-    function x() {
-
+    function goGoodPage(gId) {
+        var uEmail = "${uEmail}";
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/goodsPage?gId="+gId+"&uEmail="+uEmail;
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
+    }
+    function goShopPage(mCertificatenum) {
+        var uEmail = "${uEmail}";
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/shopPage?mCertificatenum="+mCertificatenum+"&uEmail="+uEmail;
+        document.getElementById("form").method="post";
+        document.getElementById("form").submit();
     }
 </script>
 </html>

@@ -61,13 +61,23 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public String selectNameByEmail(String uEmail) {
+        return usersDao.selectNameByEmail(uEmail);
+    }
+
+    @Override
     public Integer selectUserState(String uEmail) {
         return usersDao.selectUserState(uEmail);
     }
 
     @Override
-    public void updateVIP(Users users) {
-        usersDao.updateVIP(users);
+    public int selectVIPByEmail(String uEmail) {
+        return usersDao.selectVIPByEmail(uEmail);
+    }
+
+    @Override
+    public void updateVIP(String uEmail, int uVIP) {
+        usersDao.updateVIP(uEmail, uVIP);
     }
 
     @Override

@@ -149,7 +149,7 @@
         var password = document.getElementById("uPassword");
         var userPass = password.value;
         if (userPass.length < 6|| userPass.length > 18) {
-            trip("password_trip", "密码为6~18位大大小写数字特殊符号组合!!");
+            trip("password_trip", "密码为6~18位!!");
             return false;
         } else {
             trip("password_trip", "√");

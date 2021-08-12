@@ -18,10 +18,6 @@
                 uName = #{uName},
             </if>
 
-            <if test="uPassword != null">
-                uPassword = #{uPassword},
-            </if>
-
             <if test="uAddress != null">
                 uAddress = #{uAddress},
             </if>
@@ -47,8 +43,14 @@
     <select id="selectPasswordByEmail" parameterType="String" resultType="String">
         select uPassword from users where uEmail = #{uEmail}
     </select>
+    <select id="selectNameByEmail" parameterType="String" resultType="String">
+        select uName from users where uEmail = #{uEmail}
+    </select>
     <select id="selectUserState" parameterType="string" resultType="Integer">
         select uState from users where uEmail = #{uEmail}
+    </select>
+    <select id="selectVIPByEmail" parameterType="String" resultType="Integer">
+        select uVIP from users where uEmail = #{uEmail}
     </select>
     <update id="updateVIP" parameterType="com.sys.pojo.Users">
         update users set uVIP = #{uVIP} where uEmail = #{uEmail}

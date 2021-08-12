@@ -12,4 +12,6 @@ public interface CommentsDao {
     void insertComment(Comments comments);
     void deleteComment(Comments comments);
     List<Comments> selectAllComments();
+    List<Comments> selectCommentsById(Integer gId);
+    Integer selectAverageScore(String mCertificatenum);
 }

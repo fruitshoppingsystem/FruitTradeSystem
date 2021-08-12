@@ -45,6 +45,16 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<Goods> selectMerchantGoods(String mCertificatenum) {
+        return goodsDao.selectMerchantGoods(mCertificatenum);
+    }
+
+    @Override
+    public List<Goods> selectMerchantVIPGoods(String mCertificatenum) {
+        return goodsDao.selectMerchantVIPGoods(mCertificatenum);
+    }
+
+    @Override
     public List<Goods> selectGoodsByName(String gName) {
         return goodsDao.selectGoodsByName(gName);
     }
@@ -60,7 +70,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void updateGoodSum(Goods goods) {
-        goodsDao.updateGoodSum(goods);
+    public void updateGoodSum(Integer gId, Integer gSum) {
+        goodsDao.updateGoodSum(gId, gSum);
     }
 }
