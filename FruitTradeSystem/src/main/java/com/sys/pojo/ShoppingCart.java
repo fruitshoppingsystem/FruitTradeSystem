@@ -11,11 +11,12 @@ public class ShoppingCart {
     private String gSize;
     private Integer gVIP;
     private String mName;
+    private String mPhonenum;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(Integer gId, String uEmail, String mCertificatenum, Integer sSum, String gName, Float gPrice, String gSize, Integer gVIP, String mName) {
+    public ShoppingCart(Integer gId, String uEmail, String mCertificatenum, Integer sSum, String gName, Float gPrice, String gSize, Integer gVIP, String mName, String mPhonenum) {
         this.gId = gId;
         this.uEmail = uEmail;
         this.mCertificatenum = mCertificatenum;
@@ -25,6 +26,7 @@ public class ShoppingCart {
         this.gSize = gSize;
         this.gVIP = gVIP;
         this.mName = mName;
+        this.mPhonenum = mPhonenum;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class ShoppingCart {
                 ", gSize='" + gSize + '\'' +
                 ", gVIP=" + gVIP +
                 ", mName='" + mName + '\'' +
+                ", mPhonenum'" + mPhonenum + '\'' +
                 '}';
     }
 
@@ -113,6 +116,14 @@ public class ShoppingCart {
 
     public void setmName(String mName) {
         this.mName = mName;
+    }
+
+    public String getmPhonenum() {
+        return mPhonenum;
+    }
+
+    public void setmPhonenum(String mPhonenum) {
+        this.mPhonenum = mPhonenum;
     }
 
     public Integer getsId() {

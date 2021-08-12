@@ -15,7 +15,7 @@ public class AdminsServiceImpl implements AdminsService {
     @Autowired
     private AdminsDao adminsDao;
     @Override
-    public List<Admins> selectAdminById(int aId) {
+    public Admins selectAdminById(int aId) {
         return adminsDao.selectAdminById(aId);
     }
 
@@ -35,7 +35,8 @@ public class AdminsServiceImpl implements AdminsService {
     }
 
     @Override
-    public Boolean selectAdminLogin() {
-        return adminsDao.selectAdminLogin();
+    public Integer selectAdminState(Integer aId) {
+        return adminsDao.selectAdminState(aId);
     }
+
 }

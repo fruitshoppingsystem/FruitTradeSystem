@@ -45,7 +45,8 @@ public class GoodController {
 
     @RequestMapping("/deleteGood")
     @ResponseBody
-    public void deleteGood(Integer gId){
+    public String deleteGood(Integer gId){
         goodsService.deleteGood(gId);
+        return "success";
     }
 }

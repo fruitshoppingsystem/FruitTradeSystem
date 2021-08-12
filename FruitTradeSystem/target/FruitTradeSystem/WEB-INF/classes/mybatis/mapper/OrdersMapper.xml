@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sys.dao.OrdersDao">
     <insert id="insertOrder" parameterType="com.sys.pojo.Orders">
-        insert into orders (uEmail, mCertificatenum, gId, oState) values (#{uEmail}, #{mCertificatenum}, #{gId}, #{oState})
+        insert into orders (uEmail, mCertificatenum, gId, oState, mName, mPhonenum, uName, uPlace, uPhonenum, gName, gPrice, gSum, gSize, gVIP) values (#{uEmail}, #{mCertificatenum}, #{gId}, #{oState}, #{mName}, #{mPhonenum}, #{uName}, #{uPlace}, #{uPhonenum}, #{gName}, #{gPrice}, #{gSum}, #{gSize}, #{gVIP})
     </insert>
     <delete id="deleteOrder" parameterType="integer">
         delete from orders where oId = #{oId}

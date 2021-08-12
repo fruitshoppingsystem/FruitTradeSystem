@@ -28,7 +28,7 @@
                 document.getElementById("box2").style.display = "none";
                 document.getElementById("box3").style.display = "block";
             };
-        };
+        }
     </script>
 </head>
 <body style="margin:50px">
@@ -41,15 +41,13 @@
             <li><a id="showbox1">修改个人信息</a></li>
             <li><a id="showbox2">我的购物车</a></li>
             <li><a id="showbox3">我的订单</a></li>
-            <li><a href="#">开通VIP</a></li>
+            <li><a ><button style="border-style: hidden; background:none" onclick="vip()">开通VIP</button></a></li>
             <li><a ><button style="border-style: hidden; background:none" onclick="logout()">退出登录</button></a></li>
             <li><a ><button style="border-style: hidden; background:none" onclick="deleteUser()">注销账号</button></a></li>
         </ul>
     </div>
     <div id="box1">
         <h3>修改个人信息</h3>
-        <form id="userInfo">
-            <label><input type="hidden" name="uEmail" id="uEmail" value="${user.uEmail}"></label>
             <label>用户名：<input type="text" name="uName" id="uName" value="${user.uName}"></label>
             <br>
             <label>地址：<input type="text" name="uAddress" id="uAddress" value="${user.uAddress}"></label>
@@ -57,16 +55,16 @@
             <label>电话：<input type="text" name="uPhonenum" id="uPhonenum" value="${user.uPhonenum}" ></label>
             <br>
             <input type="button" value="修改" onclick="updateUserInfo()">
-        </form>
     </div>
     <div id="box2">
         <h3 align="center">我的购物车</h3>
         <label>总金额：</label>${totalPrice}<br />
-        <label>VIP金额：</label>${totalPrice}*0.7<br />
+        <label>VIP金额：</label>${vipTotalPrice}<br />
         <table class="table table-hover table-bordered" border="1" style="background-color:gainsboro">
             <tr>
                 <td>商品名称</td>
                 <td>商品价格</td>
+                <td>VIP价格</td>
                 <td>商品数量</td>
                 <td>商品规格</td>
                 <td>是否为VIP商品</td>
@@ -76,13 +74,14 @@
             <c:forEach items="${shoppingCart}" var="shoppingCart">
             <tr>
                 <td>${shoppingCart.gName}</td>
-                <td>${shoppingCart.gPrice}(${shoppingCart.gPrice}*0.7)</td>
+                <td>${shoppingCart.gPrice}</td>
+                <td>${shoppingCart.gPrice}*0.7</td>
                 <td>${shoppingCart.sSum}</td>
                 <td>${shoppingCart.gSize}</td>
                 <td>${shoppingCart.gVIP}</td>
                 <td>${shoppingCart.mName}</td>
                 <td>
-                    <input type="button" value="结算" onclick="jiesuan(${shoppingCart.mCertificatenum}, ${shoppingCart.gId}, ${shoppingCart.sSum}, ${shoppingCart.sId})" />
+                    <input type="button" value="结算" onclick="jiesuan('${shoppingCart.mCertificatenum}', ${shoppingCart.gId}, ${shoppingCart.sSum}, ${shoppingCart.sId}, ${shoppingCart.gPrice})" />
                     <input type="button" value="移除" onclick="deleteShoppingCart(${shoppingCart.sId})"/>
                 </td>
             </tr>
@@ -121,8 +120,8 @@
                 <td>${order.oTrackingnum}</td>
                 <td>${order.oState}</td>
                 <td>
-                    <input type="button" value="确认收货">
-                    <input type="button" value="评论" onclick="comments(${order.uEmail}, ${order.mCertificatenum})"/>
+                    <input type="button" value="确认收货" onclick="checkGood(${order.oId}, '${order.oState}')">
+                    <input type="button" value="评论" onclick="comments('${order.uEmail}', '${order.mCertificatenum}', '${order.oState}', ${order.gId}, ${order.oId})">
                 </td>
             </tr>
             </c:forEach>
@@ -159,23 +158,24 @@
     }
 
     function index() {
-        document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage";
+        var uEmail = "${uEmail}";
+        document.getElementById("form").action="${pageContext.request.contextPath}/page/indexPage?uEmail="+uEmail;
         document.getElementById("form").method="post";
         document.getElementById("form").submit();
     }
 
     function updateUserInfo() {
-        var uEmail = $("#uEmail").val();
+        var uEmail = "${uEmail}";
         var uName = $("#uName").val();
         var uAddress = $("#uAddress").val();
         var uPhonenum = $("#uPhonenum").val();
         $.ajax({
-            async:false,
+            async : false,
             url : "${pageContext.request.contextPath}/user/updateUser",
             datatype : "String",
             type : "post",
             data:{
-                "uEmail":uEmail, "uName":uName, "uAddress":uAddress, "uPhonenum":uPhonenum
+                uEmail:uEmail, uName:uName, uAddress:uAddress, uPhonenum:uPhonenum
             },success:function () {
                 alert("修改成功");
                 document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
@@ -211,13 +211,21 @@
         });
     }
 
-    function comments(uEmail, mCertificatenum) {
-        document.getElementById("form").action="${pageContext.request.contextPath}/page/commentPage?uEmail="+uEmail+"&mCertificatenum="+mCertificatenum;
-        document.getElementById("form").method="post";
-        document.getElementById("form").submit();
+    function comments(uEmail, mCertificatenum, oState, gId, oId) {
+        if (oState === "已收货"){
+            document.getElementById("form").action="${pageContext.request.contextPath}/page/commentPage?uEmail="+uEmail+"&mCertificatenum="+mCertificatenum+"&gId="+gId+"&oId="+oId;
+            document.getElementById("form").method="post";
+            document.getElementById("form").submit();
+        }else if (oState === "已评论"){
+            alert("已评论");
+        }else {
+            alert("请收货后评论");
+        }
+
     }
 
     function deleteShoppingCart(sId) {
+        var uEmail = "${uEmail}";
         $.ajax({
             async:false,
             url : "${pageContext.request.contextPath}/shoppingCart/deleteShoppingCart",
@@ -228,6 +236,9 @@
             },success:function (res) {
                 if (res === true){
                     alert("移除成功");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
                 }else{
                     alert("移除失败");
                 }
@@ -237,25 +248,95 @@
         });
     }
 
-    function jiesuan(mCertificatenum, gId, sSum ,sId) {
-        alert("支付");
-        var uEmail = ${uEmail};
-        $.ajax({
-            url: "${pageContext.request.contextPath}/order/addOrder",
-            type: "post",
-            datatype: "String",
-            data: {uEmail:uEmail, mCertificatenum:mCertificatenum, gId:gId, sSum:sSum},
-            success: function (data) {
-                if (data.type === "success") {
-                    alert(data.msg);
-                } else {
-                    alert(data.msg);
+    function jiesuan(mCertificatenum, gId, sSum ,sId, gPrice) {
+        var uVIP = ${user.uVIP};
+        var uEmail = "${uEmail}";
+        if (uVIP === 1){
+            price = gPrice*0.7*sSum;
+        }else {
+            price = gPrice*sSum;
+        }
+        if (confirm("请支付"+price+"元")){
+            $.ajax({
+                url: "${pageContext.request.contextPath}/order/addOrder",
+                type: "post",
+                datatype: "String",
+                data: {uEmail:uEmail, mCertificatenum:mCertificatenum, gId:gId, sSum:sSum},
+                success: function (data) {
+                    if (data.type === "success") {
+                        alert(data.msg);
+                        document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+                        document.getElementById("form").method="post";
+                        document.getElementById("form").submit();
+                    } else {
+                        alert(data.msg);
+                    }
+                }, error: function () {
+                    alert("失败");
                 }
-            }, error: function () {
-                alert("失败");
-            }
-        });
-        deleteShoppingCart(sId);
+            });
+            deleteShoppingCart(sId);
+        }else {
+            document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+            document.getElementById("form").method="post";
+            document.getElementById("form").submit();
+        }
+    }
+
+    function vip() {
+        var uEmail = "${uEmail}";
+        if (confirm("请支付10元")){
+            $.ajax({
+                url: "${pageContext.request.contextPath}/user/vip",
+                type: "post",
+                datatype: "String",
+                data: {uEmail:uEmail},
+                success: function (res) {
+                    if (res === true) {
+                        alert("开通成功");
+                        document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+                        document.getElementById("form").method="post";
+                        document.getElementById("form").submit();
+                    } else {
+                        alert("开通失败");
+                    }
+                }, error: function () {
+                    alert("失败");
+                }
+            });
+        }else {
+            document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+            document.getElementById("form").method="post";
+            document.getElementById("form").submit();
+        }
+    }
+    
+    function checkGood(oId, oState) {
+        if (oState === "已发货"){
+            var uEmail = "${uEmail}";
+            $.ajax({
+                url: "${pageContext.request.contextPath}/order/checkGood",
+                type: "post",
+                datatype: "String",
+                data: {oId:oId},
+                success: function (res) {
+                    if (res === true) {
+                        alert("收货成功");
+                        document.getElementById("form").action="${pageContext.request.contextPath}/page/userPage?uEmail="+uEmail;
+                        document.getElementById("form").method="post";
+                        document.getElementById("form").submit();
+                    } else {
+                        alert("收货失败");
+                    }
+                }, error: function () {
+                    alert("失败");
+                }
+            });
+        }else if (oState === "已付款"){
+            alert("商家未发货");
+        }else {
+            alert("已确认收货");
+        }
     }
 </script>
 </html>

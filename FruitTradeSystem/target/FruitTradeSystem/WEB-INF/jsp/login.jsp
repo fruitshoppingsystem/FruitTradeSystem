@@ -106,7 +106,7 @@
         var password = document.getElementById("password");
         var pass = password.value;
         if (pass.length < 6|| pass.length > 18) {
-            trip("password_trip", "密码为6~18位大大小写数字特殊符号组合!!");
+            trip("password_trip", "密码为6~18位!!");
             return false;
         } else {
             trip("password_trip", "√");
@@ -207,7 +207,7 @@ function adminLogin() {
             },success:function (res) {
                 if (res === true){
                     alert("登录成功");
-                    document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage";
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/adminPage?aId="+aId;
                     document.getElementById("form").method="post";
                     document.getElementById("form").submit();
                 }else{

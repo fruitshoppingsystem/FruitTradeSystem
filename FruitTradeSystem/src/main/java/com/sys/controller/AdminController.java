@@ -16,15 +16,30 @@ public class AdminController {
     @ResponseBody
     public Boolean adminLogin(int aId, String aPassword){
         if (adminsService.findAdminById(aId) != 0){
-            String password = adminsService.selectPasswordById(aId);
-            if (aPassword.equals(password)){
-                adminsService.updateState(aId, 1);
+            if (adminsService.selectAdminState(aId) == 1){
                 return true;
             }else {
-                return false;
+                String password = adminsService.selectPasswordById(aId);
+                if (aPassword.equals(password)) {
+                    adminsService.updateState(aId, 1);
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         return false;
+    }
+
+    @RequestMapping("/adminLogout")
+    @ResponseBody
+    public Boolean adminLogout(Integer aId){
+        if (adminsService.selectAdminState(aId) == 1){
+            adminsService.updateState(aId, 0);
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

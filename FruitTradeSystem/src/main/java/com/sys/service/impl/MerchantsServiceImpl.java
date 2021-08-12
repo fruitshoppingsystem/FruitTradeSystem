@@ -3,6 +3,7 @@ package com.sys.service.impl;
 import com.sys.dao.MerchantsDao;
 import com.sys.pojo.Merchants;
 import com.sys.service.MerchantsService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,6 +44,11 @@ public class MerchantsServiceImpl implements MerchantsService {
     @Override
     public List<Merchants> selectAllMerchants() {
         return merchantsDao.selectAllMerchants();
+    }
+
+    @Override
+    public List<Merchants> selectNotAcceptMerchants() {
+        return merchantsDao.selectNotAcceptMerchants();
     }
 
     @Override
@@ -91,8 +97,8 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
-    public void updateScore(Merchants merchants) {
-        merchantsDao.updateScore(merchants);
+    public void updateScore(String mCertificatenum, int mScore) {
+        merchantsDao.updateScore(mCertificatenum, mScore);
     }
 
     @Override

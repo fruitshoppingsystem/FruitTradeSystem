@@ -6,15 +6,17 @@ public class Comments {
     private Integer cId;
     private String uEmail;
     private String mCertificatenum;
+    private Integer gId;
     private Timestamp time;
     private String content;
     private Integer score;
     private String uName;
     private String mName;
 
-    public Comments(String uEmail, String mCertificatenum, Timestamp time, String content, Integer score, String uName, String mName) {
+    public Comments(String uEmail, String mCertificatenum, Integer gId, Timestamp time, String content, Integer score, String uName, String mName) {
         this.uEmail = uEmail;
         this.mCertificatenum = mCertificatenum;
+        this.gId = gId;
         this.time = time;
         this.content = content;
         this.score = score;
@@ -28,6 +30,7 @@ public class Comments {
                 "cId=" + cId +
                 ", uEmail='" + uEmail + '\'' +
                 ", mCertificatenum='" + mCertificatenum + '\'' +
+                ", gId=" + gId +
                 ", time=" + time +
                 ", content='" + content + '\'' +
                 ", score=" + score +
@@ -98,6 +101,14 @@ public class Comments {
 
     public void setcId(Integer cId) {
         this.cId = cId;
+    }
+
+    public Integer getgId() {
+        return gId;
+    }
+
+    public void setgId(Integer gId) {
+        this.gId = gId;
     }
 
     public Comments() {

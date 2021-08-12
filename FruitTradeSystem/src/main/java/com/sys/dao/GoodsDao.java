@@ -2,6 +2,7 @@ package com.sys.dao;
 
 import com.sys.pojo.Goods;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,9 +16,10 @@ public interface GoodsDao {
     List<Goods> selectAllGoods();
     List<Goods> selectAllNotVIPGoods();
     List<Goods> selectAllVIPGoods();
+    List<Goods> selectMerchantGoods(String mCertificatenum);
+    List<Goods> selectMerchantVIPGoods(String mCertificatenum);
     List<Goods> selectGoodsByName(String gName);
     List<Goods> selectGoodsByCertificatenum(String mCertificatenum);
     Goods selectGoodById(Integer gId);
-    void updateGoodSum(Goods goods);
-
+    void updateGoodSum(@Param("gId") Integer gId,@Param("gSum") Integer gSum);
 }

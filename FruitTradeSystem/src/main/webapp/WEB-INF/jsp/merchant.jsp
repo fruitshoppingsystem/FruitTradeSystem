@@ -197,17 +197,48 @@
     }
 
     function deleteGood(gId) {
+        var mCertificate = "${mCertificatenum}";
+        $.ajax({
+            async:false,
+            url : "${pageContext.request.contextPath}/good/deleteGood",
+            datatype : "String",
+            type : "post",
+            data:{
+                gId:gId
+            },success:function () {
+                alert("删除成功");
+                document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage?mCertificatenum="+mCertificatenum;
+                document.getElementById("form").method="post";
+                document.getElementById("form").submit();
+            },error:function () {
+                alert("删除失败");
+            }
+        });
         document.getElementById("form").action="${pageContext.request.contextPath}/good/deleteGood?gId="+gId;
         document.getElementById("form").method="post";
         document.getElementById("form").submit();
     }
 
     function uploadTrackingnum(oId) {
+        var mCertificatenum = "${mCertificatenum}";
         var oTrackingnum = prompt("请输入快递单号");
         if (oTrackingnum !== ''){
-            document.getElementById("form").action="${pageContext.request.contextPath}/order/uploadTrackingnum?oTrackingnum="+oTrackingnum+"&oId="+oId;
-            document.getElementById("form").method="post";
-            document.getElementById("form").submit();
+            $.ajax({
+                async:false,
+                url : "${pageContext.request.contextPath}/order/uploadTrackingnum",
+                datatype : "String",
+                type : "post",
+                data:{
+                    oTrackingnum:oTrackingnum, oId:oId
+                },success:function () {
+                    alert("上传成功");
+                    document.getElementById("form").action="${pageContext.request.contextPath}/page/merchantPage?mCertificatenum="+mCertificatenum;
+                    document.getElementById("form").method="post";
+                    document.getElementById("form").submit();
+                },error:function () {
+                    alert("上传失败");
+                }
+            });
         }
     }
 

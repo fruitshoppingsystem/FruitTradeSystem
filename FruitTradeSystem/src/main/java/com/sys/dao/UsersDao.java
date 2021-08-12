@@ -19,7 +19,9 @@ public interface UsersDao {
     Users selectUsersByEmail(String uEmail);
     int findUserByEmail(String uEmail);
     String selectPasswordByEmail(String uEmail);
+    String selectNameByEmail(String uEmail);
     Integer selectUserState(String uEmail);
-    void updateVIP(Users users);
+    int selectVIPByEmail(String uEmail);
+    void updateVIP(@Param("uEmail")String uEmail, @Param("uVIP")int uVIP);
     void updateState(@Param("uEmail")String uEmail,@Param("uState") int uState);
 }

@@ -84,7 +84,7 @@
         var mName = merchantName.value;
         if (mName.length < 1 || mName.length > 10) {
 
-            trip("name_trip", "账号长度为1-10位!!");
+            trip("name_trip", "用户名长度为1-10位!!");
             return false;
         } else {
             trip("name_trip", "√");
@@ -97,7 +97,7 @@
         var password = document.getElementById("mPassword");
         var merchantPass = password.value;
         if (merchantPass.length < 6|| merchantPass.length > 18) {
-            trip("password_trip", "密码为6~18位大大小写数字特殊符号组合!!");
+            trip("password_trip", "密码为6~18位!!");
             return false;
         } else {
             trip("password_trip", "√");

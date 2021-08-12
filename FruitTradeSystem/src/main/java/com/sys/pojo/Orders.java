@@ -40,10 +40,20 @@ public class Orders {
         return "Orders{" +
                 "oId=" + oId +
                 ", uEmail='" + uEmail + '\'' +
-                ", mCertificatenum=" + mCertificatenum +
+                ", mCertificatenum='" + mCertificatenum + '\'' +
                 ", gId=" + gId +
                 ", oTrackingnum=" + oTrackingnum +
                 ", oState='" + oState + '\'' +
+                ", mName='" + mName + '\'' +
+                ", mPhonenum='" + mPhonenum + '\'' +
+                ", uName='" + uName + '\'' +
+                ", uPlace='" + uPlace + '\'' +
+                ", uPhonenum='" + uPhonenum + '\'' +
+                ", gName='" + gName + '\'' +
+                ", gPrice=" + gPrice +
+                ", gSum=" + gSum +
+                ", gSize='" + gSize + '\'' +
+                ", gVIP=" + gVIP +
                 '}';
     }
 

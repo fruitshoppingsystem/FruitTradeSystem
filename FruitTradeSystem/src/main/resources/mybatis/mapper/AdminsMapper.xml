@@ -14,7 +14,7 @@
     <update id="updateState">
         update admins set aState = #{aState} where aId = #{aId}
     </update>
-    <select id="selectAdminLogin" resultType="boolean">
-        select count(*) from admins where aState = 1
+    <select id="selectAdminState" parameterType="int" resultType="int">
+        select aState from admins where aId = #{aId}
     </select>
 </mapper>

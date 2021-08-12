@@ -8,4 +8,6 @@ public interface ShoppingCartService {
     List<ShoppingCart> selectByEmail(String uEmail);
     void deleteShoppingCart(Integer sId);
     Float selectTotalPrice(String uEmail);
+    Float selectVIPTotalPrice(String uEmail);
+    void addShoppingCart(ShoppingCart shoppingCart);
 }

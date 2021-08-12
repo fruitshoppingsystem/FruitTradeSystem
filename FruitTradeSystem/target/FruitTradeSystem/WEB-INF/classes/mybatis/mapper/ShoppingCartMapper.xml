@@ -9,6 +9,12 @@
         delete from shoppingcart where sId = #{sId}
     </delete>
     <select id="selectTotalPrice" parameterType="string" resultType="float">
-        select sum(gPrice) from shoppingcart where uEmail = #{uEmail}
+        select sum(gPrice*sSum) from shoppingcart where uEmail = #{uEmail}
     </select>
+    <select id="selectVIPTotalPrice" parameterType="string" resultType="float">
+        select sum(gPrice*sSum*0.7) from shoppingcart where uEmail = #{uEmail}
+    </select>
+    <insert id="addShoppingCart" parameterType="com.sys.pojo.ShoppingCart">
+        insert into shoppingcart (gId, uEmail, mCertificatenum, sSum, gName, gPrice, gSize, gVIP, mName, mPhonenum) values (#{gId}, #{uEmail}, #{mCertificatenum}, #{sSum}, #{gName}, #{gPrice}, #{gSize}, #{gVIP}, #{mName}, #{mPhonenum})
+    </insert>
 </mapper>

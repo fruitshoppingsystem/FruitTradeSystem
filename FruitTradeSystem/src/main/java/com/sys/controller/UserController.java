@@ -85,4 +85,11 @@ public class UserController {
         return true;
     }
 
+    @RequestMapping("/vip")
+    @ResponseBody
+    public Boolean vip(String uEmail){
+        usersService.updateVIP(uEmail, 1);
+        return true;
+    }
+
 }

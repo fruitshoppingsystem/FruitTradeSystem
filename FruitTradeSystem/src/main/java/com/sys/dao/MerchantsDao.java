@@ -17,6 +17,7 @@ public interface MerchantsDao {
     void updateMerchant(@Param("mCertificatenum")String mCertificatenum, @Param("mName")String mName, @Param("mAddress")String mAddress, @Param("mPhonenum")String mPhonenum);
     void updateMerchantPassword(Merchants merchants);
     List<Merchants> selectAllMerchants();
+    List<Merchants> selectNotAcceptMerchants();
     List<Merchants> selectAcceptMerchants();
     int findMerchantByCertificatenum(String mCertificatenum);
     Merchants selectMerchantByCertificatenum(String mCertificatenum);
@@ -26,6 +27,6 @@ public interface MerchantsDao {
     String selectPhoneByCertificatenum(String mCertificatenum);
     int selectScoreByCertificatenum(String mCertificatenum);
     int selectMerchantState(String mCertificatenum);
-    void updateScore(Merchants merchants);
+    void updateScore(@Param("mCertificatenum")String mCertificatenum, @Param("mScore")int mScore);
     void updateState(@Param("mCertificatenum")String mCertificatenum, @Param("mState")int mState);
 }

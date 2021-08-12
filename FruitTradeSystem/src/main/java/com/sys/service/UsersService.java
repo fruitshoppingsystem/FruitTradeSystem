@@ -14,7 +14,9 @@ public interface UsersService {
     Users selectUsersByEmail(String uEmail);
     int findUserByEmail(String uEmail);
     String selectPasswordByEmail(String uEmail);
+    String selectNameByEmail(String uEmail);
     Integer selectUserState(String uEmail);
-    void updateVIP(Users users);
+    int selectVIPByEmail(String uEmail);
+    void updateVIP(String uEmail, int uVIP);
     void updateState(String uEmail, int uState);
 }
